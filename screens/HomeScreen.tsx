@@ -5,7 +5,8 @@ import { SafeAreaView } from 'react-native-safe-area-context'
 const HomeScreen = () => {
   return (
     <SafeAreaView className='flex justify-center items-center h-full '>
-      <Text className='text-3xl text-red-600'>This is the HomeScreen</Text>
+      <Text className='text-3xl font-bold text-red-600'>This is the HomeScreen</Text>
+      
     </SafeAreaView>
   )
 }
