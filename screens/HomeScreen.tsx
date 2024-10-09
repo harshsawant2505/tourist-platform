@@ -133,28 +133,28 @@ const HomeScreen = () => {
 
           <View className='w-full h-40 py-2 flex-row '>
               <ScrollView horizontal className='gap-3 px-1'>
-                 <View className='w-28 h-28 bg-black items-center' style={{ backgroundColor: 'rgba(0, 0, 0, 0.43)' }}>
+                 <View className='w-28 h-28 bg-black items-center rounded-md' style={{ backgroundColor: 'rgba(0, 0, 0, 0.43)' }}>
                  <Image
                   source={require('../assets/envelope.png')}
                   className=" w-20 h-20 opacity-100 "
                />
                <Text className='text-white mt-2 text-sm font-medium'>Mystery Map</Text>
                  </View>
-                 <View className='w-28 h-28 bg-black items-center' style={{ backgroundColor: 'rgba(0, 0, 0, 0.43)' }}>
+                 <View className='w-28 h-28 bg-black items-center rounded-md' style={{ backgroundColor: 'rgba(0, 0, 0, 0.43)' }}>
                  <Image
                   source={require('../assets/wheel.png')}
                   className=" w-20 h-20 opacity-100 mt-2 "
                />
                 <Text className='text-white text-sm font-medium'>SpinTheWheel</Text>
                  </View>
-                 <View className='w-28 h-28 bg-black items-center' style={{ backgroundColor: 'rgba(0, 0, 0, 0.43)' }}>
+                 <View className='w-28 h-28 bg-black items-center rounded-md' style={{ backgroundColor: 'rgba(0, 0, 0, 0.43)' }}>
                  <Image
                   source={require('../assets/quiz.png')}
                   className=" w-20 h-20 opacity-100 "
                />
                 <Text className='text-white mt-2 text-sm font-medium'>Discovered</Text>
                  </View>
-                 <View className='w-28 h-28 bg-black items-center' style={{ backgroundColor: 'rgba(0, 0, 0, 0.43)' }}>
+                 <View className='w-28 h-28 bg-black items-center rounded-md' style={{ backgroundColor: 'rgba(0, 0, 0, 0.43)' }}>
                  <Image
                   source={require('../assets/quiz.png')}
                   className=" w-24 h-24 opacity-100 "
