@@ -4,6 +4,8 @@ import { SafeAreaView } from 'react-native-safe-area-context'
 import { BlurView } from 'expo-blur';
 import Badge from '../components/Badge';
 
+//this is the home screen
+
 const HomeScreen = () => {
 
   return (
