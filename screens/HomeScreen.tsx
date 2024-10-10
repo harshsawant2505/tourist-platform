@@ -5,6 +5,7 @@ import { BlurView } from 'expo-blur';
 import Badge from '../components/Badge';
 import Navbar from '../components/Navbar';
 
+
 //this is the hom frome harsh final
 
 const HomeScreen = () => {
@@ -171,6 +172,7 @@ const HomeScreen = () => {
                 
              
               </ScrollView>
+              
 
           </View>
          
@@ -180,8 +182,9 @@ const HomeScreen = () => {
       
 
       </ScrollView>
-
+      
      <Navbar />
+
     </ImageBackground>
     </SafeAreaView>
   );

@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import Icon from 'react-native-vector-icons/MaterialIcons'; // Importing icon set
 
 const Navbar = () => {
   return (
@@ -11,13 +12,24 @@ const Navbar = () => {
       {/* Bottom Navigation Bar */}
       <View style={styles.Navbar}>
         <TouchableOpacity style={styles.navButton}>
+          <Icon name="home" size={30} color="#FFFFFF" />
           <Text style={styles.navText}>Home</Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.navButton}>
+          <Icon name="search" size={30} color="#FFFFFF" />
           <Text style={styles.navText}>Search</Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.navButton}>
-          <Text style={styles.navText}>Profile</Text>
+          <Icon name="camera" size={30} color="#FFFFFF" />
+          <Text style={styles.navText}>Camera</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.navButton}>
+          <Icon name="map" size={30} color="#FFFFFF" />
+          <Text style={styles.navText}>Maps</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.navButton}>
+          <Icon name="menu" size={30} color="#FFFFFF" />
+          <Text style={styles.navText}>Menu</Text>
         </TouchableOpacity>
       </View>
     </View>
@@ -27,7 +39,7 @@ const Navbar = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'flex-end', // Ensure content doesn't go behind the bottom bar
+    justifyContent: 'flex-end',
   },
   content: {
     flex: 1,
@@ -42,10 +54,9 @@ const styles = StyleSheet.create({
     bottom: 0,
     left: 0,
     right: 0,
-    height: 50,
+    height: 60,
     flexDirection: 'row',
-   backgroundColor: 'rgba(0, 0, 0, 0.93)',
-   
+    backgroundColor: '#000000',
     justifyContent: 'space-around',
     alignItems: 'center',
   },
@@ -55,7 +66,8 @@ const styles = StyleSheet.create({
   },
   navText: {
     color: '#FFFFFF',
-    fontSize: 18,
+    fontSize: 12,
+    marginTop: 4,
   },
 });
 
