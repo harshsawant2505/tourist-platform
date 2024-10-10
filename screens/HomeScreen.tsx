@@ -3,6 +3,7 @@ import React from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { BlurView } from 'expo-blur';
 import Badge from '../components/Badge';
+import Navbar from '../components/Navbar';
 
 //this is the hom frome harsh final
 
@@ -166,11 +167,13 @@ const HomeScreen = () => {
                 
              
               </ScrollView>
+              
 
           </View>
          
 
       </View>
+      
     </ImageBackground>
     </SafeAreaView>
   );
