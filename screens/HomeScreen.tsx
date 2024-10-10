@@ -3,6 +3,7 @@ import React from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { BlurView } from 'expo-blur';
 import Badge from '../components/Badge';
+import Navbar from '../components/Navbar';
 
 //this is the hom frome harsh final
 
@@ -14,19 +15,23 @@ const HomeScreen = () => {
     <ImageBackground
     source={require('../assets/mountainBack.jpg')}
     style={{ flex: 1 }}>
+
+      <ScrollView>
+
+     
    
         <View className='w-full h-10 flex justify-center items-center bg-gray-800'>
               <Text className='text-white '>Nav bar</Text>
         </View>
 
 
-      <View className='w-full h-full px-2 justify-center gap-4'>
+      <View className='w-full h-full px-2 justify-center gap-2'>
 
 
 
 
           <View className='w-full flex-row h-[145px] justify-between  '>
-                <View className='w-[30%] gap-y-1  '>
+                <View className='w-[32%] h-full gap-y-1  '>
 
                   <View className='h-[49%] px-2 py-1  rounded-md ' style={{ backgroundColor: 'rgba(0, 0, 0, 0.58)' }}>
                     <View className='py-1  '>
@@ -47,7 +52,7 @@ const HomeScreen = () => {
 
                 </View>
 
-                <View className='w-[65%] rounded-md p-2 ' style={{ backgroundColor: 'rgba(0, 0, 0, 0.58)' }}>
+                <View className='w-[65%] rounded-md p-2 h-full ' style={{ backgroundColor: 'rgba(0, 0, 0, 0.58)' }}>
                   <Text className='text-lg font-bold text-white'>No Bookings Made Yet</Text>
                   
                   
@@ -134,7 +139,7 @@ const HomeScreen = () => {
           </View>
 
 
-          <View className='w-full h-40 py-2 flex-row '>
+          <View className='w-full h-40 mb-10  flex-row '>
               <ScrollView horizontal className='gap-3 px-1'>
                  <View className='w-28 h-28 bg-black items-center rounded-md' style={{ backgroundColor: 'rgba(0, 0, 0, 0.43)' }}>
                  <Image
@@ -155,7 +160,7 @@ const HomeScreen = () => {
                   source={require('../assets/quiz.png')}
                   className=" w-20 h-20 opacity-100 "
                />
-                <Text className='text-white mt-2 text-sm font-medium'>Discovered</Text>
+                <Text className='text-white mt-2 text-sm font-medium'>Discovereddd</Text>
                  </View>
                  <View className='w-28 h-28 bg-black items-center rounded-md' style={{ backgroundColor: 'rgba(0, 0, 0, 0.43)' }}>
                  <Image
@@ -171,10 +176,17 @@ const HomeScreen = () => {
          
 
       </View>
+
+      
+
+      </ScrollView>
+
+     <Navbar />
     </ImageBackground>
     </SafeAreaView>
   );
 };
+
 
 
  

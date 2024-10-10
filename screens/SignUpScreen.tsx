@@ -11,14 +11,33 @@ import {
   } from 'react-native';
   import React, { useState } from 'react';
   import { SafeAreaView } from 'react-native-safe-area-context';
+  import {auth} from '../firebase';
   
   const SignUpScreen = ({navigation}:any) => {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-  
+
     const signUp = () => {
-      console.log('Sign Up:', { name, email, password });
+       console.log('Sign Up:', { name, email, password });
+
+       if(email === '' || password === '' || name === ''){
+        alert('Please fill all the fields');
+        return;
+       }
+
+      auth.createUserWithEmailAndPassword(email, password)
+      .then((userCredential:any) => {
+        // Signed in
+        var user = userCredential.user;
+        console.log(user);
+      }).catch((error:any) => {
+        var errorCode = error.code;
+        var errorMessage = error.nativeErrorMessage;
+        alert(error.message);
+        console.log(error.message);
+
+      });
     };
   
     return (
