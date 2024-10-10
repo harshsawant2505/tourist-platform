@@ -18,7 +18,7 @@ const HomeScreen = () => {
         </View>
 
 
-      <View className='w-full h-full px-5 justify-center gap-4'>
+      <View className='w-full h-full px-2 justify-center gap-4'>
 
 
 
@@ -26,16 +26,17 @@ const HomeScreen = () => {
           <View className='w-full flex-row h-[145px] justify-between  '>
                 <View className='w-[30%] gap-y-1  '>
 
-                  <View className='h-[48%] px-2 py-1  rounded-md' style={{ backgroundColor: 'rgba(0, 0, 0, 0.58)' }}>
-                    <View className='py-1'>
-                      <Text className='text-white font-bold text-2xl'>77F</Text>
-                       <Text className='font-medium text-white'>Thunderstorm</Text>
+                  <View className='h-[49%] px-2 py-1  rounded-md ' style={{ backgroundColor: 'rgba(0, 0, 0, 0.58)' }}>
+                    <View className='py-1  '>
+                      <Text className='text-white font-bold text-xl'>77F</Text>
+                       <Text className='font-medium  w-24 text-sm text-white p-0'>Thunderstorm</Text>
                       </View>
                   </View>
+
                   <View className='h-[48%] px-2 py-1  rounded-md' style={{ backgroundColor: 'rgba(0, 0, 0, 0.58)' }}>
                     <View className='py-1'>
                       <Text className='text-white font-bold text-xl'>Events</Text>
-                       <Text className='font-medium text-white'>no ongoing</Text>
+                       <Text className='font-medium text-white w-24'>no ongoing</Text>
                       </View>
                   </View>
 
@@ -119,7 +120,7 @@ const HomeScreen = () => {
                 </View>
 
                 <TouchableOpacity
-                    className="px-2 w-16 bottom-3 right-0 absolute py-2 mt-5 rounded bg-white items-center"
+                    className="px-2 w-16 bottom-3 right-6 absolute py-2 mt-5 rounded bg-white items-center"
                     
                   >
                     <Text className="text-black text-md">Start</Text>
