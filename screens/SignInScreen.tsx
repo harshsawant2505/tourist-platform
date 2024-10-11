@@ -9,16 +9,39 @@ import {
     Platform,
     ScrollView
   } from 'react-native';
-  import React, { useState } from 'react';
+  import React, { useEffect, useState } from 'react';
   import { SafeAreaView } from 'react-native-safe-area-context';
+  import { signInWithEmailAndPassword, onAuthStateChanged, signOut } from "firebase/auth";
+
+  import {auth} from '../firebase';
   
-  const SignUpScreen = ({navigation}:any) => {
+  const SignInScreen = ({navigation}:any) => {
+
  
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+
+    
+  
   
     const signIn = () => {
       console.log('Sign Up:', {  email, password });
+
+      signInWithEmailAndPassword(auth,email, password)
+      .then((userCredential:any) => {
+        // Signed in
+        const user = userCredential.user;
+        console.log(user.email);
+        if(user?.email){
+          navigation.replace('Home');
+        }
+
+      }).catch((error:any) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        console.log(errorMessage);
+        alert(errorMessage);
+      })
     };
   
     return (
@@ -28,7 +51,7 @@ import {
           style={{ flex: 1 }}
         >
           <KeyboardAvoidingView
-            behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+            // behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
             style={{ flex: 1 }}
           >
             <ScrollView
@@ -73,7 +96,7 @@ import {
                     <Text className="text-white text-lg">Sign In</Text>
                   </TouchableOpacity>
   
-                  <Text className="text-gray-500 text-md mt-32">
+                  <Text className="text-gray-500 text-md mt-12">
                     Dont have an Account?
                     <Text className="text-orange-600" onPress={()=>navigation.navigate('Signup')} > Sign Up</Text>
                   </Text>
@@ -86,4 +109,4 @@ import {
     );
   };
   
-  export default SignUpScreen;
+  export default SignInScreen;

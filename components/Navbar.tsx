@@ -1,8 +1,27 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons'; // Importing icon set
+import { auth } from '../firebase';
+import { useNavigation } from '@react-navigation/core';
+import { signOut } from 'firebase/auth';
+
+
 
 const Navbar = () => {
+
+  const navigation = useNavigation();
+
+  const signout = () => {
+    console.log('Sign Out');
+    signOut(auth).then(() => {
+      navigation.navigate('SignIn' as never);
+
+    }
+    ).catch((error:any) => {
+      console.log(error.message);
+    });
+  };
+
   return (
     <View style={styles.container}>
       <View style={styles.content}>
@@ -27,7 +46,7 @@ const Navbar = () => {
           <Icon name="map" size={30} color="#FFFFFF" />
           <Text style={styles.navText}>Maps</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.navButton}>
+        <TouchableOpacity style={styles.navButton} onPress={signout}>
           <Icon name="menu" size={30} color="#FFFFFF" />
           <Text style={styles.navText}>Menu</Text>
         </TouchableOpacity>

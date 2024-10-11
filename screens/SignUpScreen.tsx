@@ -12,6 +12,7 @@ import {
   import React, { useState } from 'react';
   import { SafeAreaView } from 'react-native-safe-area-context';
   import {auth} from '../firebase';
+  import { signInWithEmailAndPassword, onAuthStateChanged, signOut, createUserWithEmailAndPassword } from "firebase/auth";
   
   const SignUpScreen = ({navigation}:any) => {
     const [name, setName] = useState('');
@@ -26,10 +27,20 @@ import {
         return;
        }
 
-      auth.createUserWithEmailAndPassword(email, password)
+    createUserWithEmailAndPassword(auth,email, password)
       .then((userCredential:any) => {
         // Signed in
         var user = userCredential.user;
+
+        if(user){
+          user.updateProfile({
+            displayName: name,
+          }).then((updateProfile:any) => {
+            console.log('User Updated: ', updateProfile);
+          }).catch((error:any) => {
+            alert(error.message);
+          });
+        }
         console.log(user);
       }).catch((error:any) => {
         var errorCode = error.code;
@@ -47,18 +58,20 @@ import {
           style={{ flex: 1 }}
         >
           <KeyboardAvoidingView
-            behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+          
+           
             style={{ flex: 1 }}
           >
             <ScrollView
+             horizontal={false}
               contentContainerStyle={{ flexGrow: 1, justifyContent: 'flex-end' }}
             >
               <View className="bg-[#040D19] h-[80%] w-full flex flex-col items-center rounded-t-3xl">
                 <Image
                   source={require('../assets/manStars.png')}
-                  className="w-40 h-40 mt-10"
+                  className="w-32 h-32 mt-10"
                 />
-                <View className="w-full items-center px-5 py-10">
+                <View className="w-full   items-center px-5 py-5">
                   <Text className="text-white text-2xl mb-1 font-medium">
                     Create An Account
                   </Text>
@@ -99,7 +112,7 @@ import {
                     <Text className="text-white text-lg">Sign Up</Text>
                   </TouchableOpacity>
   
-                  <Text className="text-gray-500 text-md mt-16">
+                  <Text className="text-gray-500 text-md mt-5">
                     Already have an account?
                     <Text className="text-orange-600" onPress={()=>navigation.navigate('Signin')}> Sign In</Text>
                   </Text>
