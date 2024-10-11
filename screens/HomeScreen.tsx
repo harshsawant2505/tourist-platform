@@ -10,7 +10,7 @@ import { auth, db } from '../firebase';
 
 
 
-const HomeScreen = () => {
+const HomeScreen = ({navigation}:any) => {
 
       const [user, setUser] = useState<any>(null);
 
@@ -40,6 +40,7 @@ const HomeScreen = () => {
     fetchDoc()
   }, [])
 
+  
 
 
 
@@ -189,13 +190,14 @@ const HomeScreen = () => {
                />
                 <Text className='text-white text-sm font-medium'>SpinTheWheel</Text>
                  </View>
-                 <View className='w-28 h-28 bg-black items-center rounded-md' style={{ backgroundColor: 'rgba(0, 0, 0, 0.43)' }}>
+                 <TouchableOpacity onPress={()=>navigation.navigate('quiz')}  className='w-28 h-28 bg-black items-center rounded-md' style={{ backgroundColor: 'rgba(0, 0, 0, 0.43)' }}>
                  <Image
                   source={require('../assets/quiz.png')}
                   className=" w-20 h-20 opacity-100 "
+                  
                />
                 <Text className='text-white mt-2 text-sm font-medium'>Discovereddd</Text>
-                 </View>
+                 </TouchableOpacity>
                  <View className='w-28 h-28 bg-black items-center rounded-md' style={{ backgroundColor: 'rgba(0, 0, 0, 0.43)' }}>
                  <Image
                   source={require('../assets/quiz.png')}
@@ -225,5 +227,4 @@ const HomeScreen = () => {
 
 
 
- 
 export default HomeScreen
