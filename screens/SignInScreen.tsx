@@ -13,7 +13,8 @@ import {
   import { SafeAreaView } from 'react-native-safe-area-context';
   import { signInWithEmailAndPassword, onAuthStateChanged, signOut } from "firebase/auth";
 
-  import {auth} from '../firebase';
+  import {auth, db} from '../firebase';
+import { addDoc, collection } from 'firebase/firestore';
   
   const SignInScreen = ({navigation}:any) => {
 
@@ -21,7 +22,7 @@ import {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
-    
+  
   
   
     const signIn = () => {
@@ -98,7 +99,7 @@ import {
   
                   <Text className="text-gray-500 text-md mt-12">
                     Dont have an Account?
-                    <Text className="text-orange-600" onPress={()=>navigation.navigate('Signup')} > Sign Up</Text>
+                    <Text className="text-orange-600" onPress={()=>navigation.navigate('SignUp')} > Sign Up</Text>
                   </Text>
                 </View>
               </View>

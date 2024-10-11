@@ -24,7 +24,7 @@ function App() {
     console.log('App.js mounted');
 
     let unsubscribe =  onAuthStateChanged(auth,(user:any) => {
-      console.log('User:', user);
+  
       if(user){
         setUser(user);
         if (initializing) setInitializing(false);

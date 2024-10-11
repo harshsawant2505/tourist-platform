@@ -9,15 +9,30 @@ import {
     Platform,
     ScrollView
   } from 'react-native';
-  import React, { useState } from 'react';
+  import React, { useId, useState } from 'react';
   import { SafeAreaView } from 'react-native-safe-area-context';
-  import {auth} from '../firebase';
+  import {auth, db} from '../firebase';
   import { signInWithEmailAndPassword, onAuthStateChanged, signOut, createUserWithEmailAndPassword } from "firebase/auth";
+import { addDoc, collection } from 'firebase/firestore';
   
   const SignUpScreen = ({navigation}:any) => {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+
+    const getData = async () => {
+      try {
+        const docRef = await addDoc(collection(db, "users"), {
+          uid: auth.currentUser?.uid,
+          name: name,
+          email: auth.currentUser?.email,
+        });
+        console.log("Document written with ID: ", docRef.id);
+      } catch (e) {
+        console.error("Error adding document: ", e);
+      }
+    }
+    
 
     const signUp = () => {
        console.log('Sign Up:', { name, email, password });
@@ -33,13 +48,8 @@ import {
         var user = userCredential.user;
 
         if(user){
-          user.updateProfile({
-            displayName: name,
-          }).then((updateProfile:any) => {
-            console.log('User Updated: ', updateProfile);
-          }).catch((error:any) => {
-            alert(error.message);
-          });
+          getData()
+          navigation.replace('Home');
         }
         console.log(user);
       }).catch((error:any) => {
@@ -114,7 +124,7 @@ import {
   
                   <Text className="text-gray-500 text-md mt-5">
                     Already have an account?
-                    <Text className="text-orange-600" onPress={()=>navigation.navigate('Signin')}> Sign In</Text>
+                    <Text className="text-orange-600" onPress={()=>navigation.navigate('SignIn')}> Sign In</Text>
                   </Text>
                 </View>
               </View>

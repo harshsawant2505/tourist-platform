@@ -1,13 +1,47 @@
 import { View, Text, ImageBackground, StyleSheet, Image, Button, TouchableOpacity, ScrollView } from 'react-native'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
-import { BlurView } from 'expo-blur';
-import Badge from '../components/Badge';
 import Navbar from '../components/Navbar';
-
+import firestore from '@react-native-firebase/firestore';
+import 'firebase/compat/app'
+import { collection, addDoc, doc, getDoc, query, where, getDocs } from "firebase/firestore"; 
+import { auth, db } from '../firebase';
 //this is the hom frome harsh final
 
+
+
 const HomeScreen = () => {
+
+      const [user, setUser] = useState<any>(null);
+
+
+    const fetchDoc =async () =>{
+      console.log("inside");
+
+      try {
+        const q = query(collection(db, "users"), where("email", "==", auth.currentUser?.email));
+        
+        const querySnapshot = await getDocs(q);
+        querySnapshot.forEach((doc) => {
+         
+          // doc.data() is never undefined for query doc snapshots
+         
+          setUser(doc.data())
+         
+        });
+        console.log("User saved to Database: ", user)
+      } catch (error) {
+          console.log("error")
+      }
+     
+    }
+ 
+  useEffect(() => {
+    fetchDoc()
+  }, [])
+
+
+
 
   return (
     
@@ -21,7 +55,7 @@ const HomeScreen = () => {
      
    
         <View className='w-full h-10 flex justify-center items-center bg-gray-800'>
-              <Text className='text-white '>Nav bar</Text>
+              <Text className='text-white '>{user?.email}</Text>
         </View>
 
 

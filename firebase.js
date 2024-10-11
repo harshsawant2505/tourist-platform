@@ -33,6 +33,8 @@ import {
   initializeAuth,
 } from "firebase/auth";
 
+import { getFirestore } from "firebase/firestore";
+
 export const firebaseApp = initializeApp({
   apiKey: "AIzaSyASmOt-boxd1fuSKOlnVHyvQ2P9Ho3I1MU",
   authDomain: "tourist-platform.firebaseapp.com",
@@ -41,6 +43,8 @@ export const firebaseApp = initializeApp({
   messagingSenderId: "994084816234",
   appId: "1:994084816234:web:7af1276516ce9f74b79113"
 });
+
+export const db =  getFirestore(firebaseApp);;
 
 export const auth = initializeAuth(firebaseApp, {
   persistence: getReactNativePersistence(AsyncStorage),
