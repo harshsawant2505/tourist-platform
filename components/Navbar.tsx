@@ -1,149 +1,93 @@
-import { View, Pressable, Animated, Image, SafeAreaView } from 'react-native';
-import React, { useState } from 'react';
+import React from 'react';
+import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import Icon from 'react-native-vector-icons/MaterialIcons'; // Importing icon set
+import { auth } from '../firebase';
+import { useNavigation } from '@react-navigation/core';
+import { signOut } from 'firebase/auth';
 
-type ButtonNames = 'maps' | 'camera' | 'home' | 'search' | 'more';
+
 
 const Navbar = () => {
-  const [pressedButton, setPressedButton] = useState<ButtonNames | null>(null); 
-  
-  const [scaleValues, setScaleValues] = useState<Record<ButtonNames, Animated.Value>>({
-    maps: new Animated.Value(1),
-    camera: new Animated.Value(1),
-    home: new Animated.Value(1),
-    search: new Animated.Value(1),
-    more: new Animated.Value(1),
-  });
 
-  const handlePressIn = (button: ButtonNames) => {
-    setPressedButton(button);
-    Animated.spring(scaleValues[button], {
-      toValue: 1.3,
-      useNativeDriver: true,
-    }).start();
-  };
+  const navigation = useNavigation();
 
-  const handlePressOut = (button: ButtonNames) => {
-    Animated.spring(scaleValues[button], {
-      toValue: 1,
-      useNativeDriver: true,
-    }).start();
+  const signout = () => {
+    console.log('Sign Out');
+    signOut(auth).then(() => {
+      navigation.navigate('SignIn' as never);
+
+    }
+    ).catch((error:any) => {
+      console.log(error.message);
+    });
   };
 
   return (
-    <SafeAreaView style={{ justifyContent: 'center', alignItems: 'center', height: '100%' }}>
-      <View
-        style={{
-          height: 80,
-          position: 'absolute',
-          flexDirection: 'row',
-          justifyContent: 'space-around',
-          width: 420,
-          bottom:-70,
-          right:-8,
-          borderTopLeftRadius: 0,
-          borderTopRightRadius: 0,
-          borderBottomLeftRadius: 0,
-          borderBottomRightRadius: 0,
-          backgroundColor: 'rgba(0, 0, 0, 0.6)',
-        }}
-      >
-        <Pressable
-          style={{
-            height: 56,
-            width: 56,
-            justifyContent: 'center',
-            alignItems: 'center',
-            borderRadius: 28, // Circular shape
-            paddingTop: 6, 
-            marginTop:12,// Adjust image slightly down from the top
-            backgroundColor: pressedButton === 'maps' ? '#54D58A' : 'transparent',
-          }}
-          onPressIn={() => handlePressIn('maps')}
-          onPressOut={() => handlePressOut('maps')}
-        >
-          <Animated.View style={{ transform: [{ scale: scaleValues.maps }] }}>
-            <Image source={require('../assets/maps.png')} />
-          </Animated.View>
-        </Pressable>
-
-        <Pressable
-          style={{
-            height: 56,
-            width: 56,
-            justifyContent: 'center',
-            alignItems: 'center',
-            borderRadius: 28,
-            paddingTop: 6, 
-            marginTop:12,// Adjust image slightly down from the top
-            backgroundColor: pressedButton === 'camera' ? '#54D58A' : 'transparent',
-          }}
-          onPressIn={() => handlePressIn('camera')}
-          onPressOut={() => handlePressOut('camera')}
-        >
-          <Animated.View style={{ transform: [{ scale: scaleValues.camera }] }}>
-            <Image source={require('../assets/Camera.png')} />
-          </Animated.View>
-        </Pressable>
-
-        <Pressable
-          style={{
-            height: 56,
-            width: 56,
-            justifyContent: 'center',
-            alignItems: 'center',
-            borderRadius: 28,
-            paddingTop: 6,
-            marginTop:12, // Adjust image slightly down from the top
-            backgroundColor: pressedButton === 'home' ? '#54D58A' : 'transparent',
-          }}
-          onPressIn={() => handlePressIn('home')}
-          onPressOut={() => handlePressOut('home')}
-        >
-          <Animated.View style={{ transform: [{ scale: scaleValues.home }] }}>
-            <Image source={require('../assets/Home.png')} />
-          </Animated.View>
-        </Pressable>
-
-        <Pressable
-          style={{
-            height: 56,
-            width: 56,
-            justifyContent: 'center',
-            alignItems: 'center',
-            borderRadius: 28,
-            paddingTop: 6, 
-            marginTop:12,// Adjust image slightly down from the top
-            backgroundColor: pressedButton === 'search' ? '#54D58A' : 'transparent',
-          }}
-          onPressIn={() => handlePressIn('search')}
-          onPressOut={() => handlePressOut('search')}
-        >
-          <Animated.View style={{ transform: [{ scale: scaleValues.search }] }}>
-            <Image source={require('../assets/Search.png')} />
-          </Animated.View>
-        </Pressable>
-
-        <Pressable
-          style={{
-            height: 56,
-            width: 56,
-            justifyContent: 'center',
-            alignItems: 'center',
-            borderRadius: 28,
-            paddingTop: 6, 
-            marginTop:12,// Adjust image slightly down from the top
-            backgroundColor: pressedButton === 'more' ? '#54D58A' : 'transparent',
-          }}
-          onPressIn={() => handlePressIn('more')}
-          onPressOut={() => handlePressOut('more')}
-        >
-          <Animated.View style={{ transform: [{ scale: scaleValues.more }] }}>
-            <Image source={require('../assets/More.png')} />
-          </Animated.View>
-        </Pressable>
+    <View style={styles.container}>
+      <View style={styles.content}>
+        <Text style={styles.mainText}>Main Content Goes Here</Text>
       </View>
-    </SafeAreaView>
+
+      {/* Bottom Navigation Bar */}
+      <View style={styles.Navbar}>
+        <TouchableOpacity style={styles.navButton}>
+          <Icon name="home" size={30} color="#FFFFFF" />
+          <Text style={styles.navText}>Home</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.navButton}>
+          <Icon name="search" size={30} color="#FFFFFF" />
+          <Text style={styles.navText}>Search</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.navButton}>
+          <Icon name="camera" size={30} color="#FFFFFF" />
+          <Text style={styles.navText}>Camera</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.navButton}>
+          <Icon name="map" size={30} color="#FFFFFF" />
+          <Text style={styles.navText}>Maps</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.navButton} onPress={signout}>
+          <Icon name="menu" size={30} color="#FFFFFF" />
+          <Text style={styles.navText}>Menu</Text>
+        </TouchableOpacity>
+      </View>
+    </View>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'flex-end',
+  },
+  content: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  mainText: {
+    fontSize: 24,
+  },
+  Navbar: {
+    position: 'absolute',
+    bottom: 0,
+    left: 0,
+    right: 0,
+    height: 60,
+    flexDirection: 'row',
+    backgroundColor: '#000000',
+    justifyContent: 'space-around',
+    alignItems: 'center',
+  },
+  navButton: {
+    flex: 1,
+    alignItems: 'center',
+  },
+  navText: {
+    color: '#FFFFFF',
+    fontSize: 12,
+    marginTop: 4,
+  },
+});
 
 export default Navbar;
