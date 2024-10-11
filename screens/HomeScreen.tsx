@@ -6,6 +6,7 @@ import firestore from '@react-native-firebase/firestore';
 import 'firebase/compat/app'
 import { collection, addDoc, doc, getDoc, query, where, getDocs } from "firebase/firestore"; 
 import { auth, db } from '../firebase';
+import { fetchDoc } from '../utils/getUser';
 //this is the hom frome harsh final
 
 
@@ -15,32 +16,29 @@ const HomeScreen = ({navigation}:any) => {
       const [user, setUser] = useState<any>(null);
 
 
-    const fetchDoc =async () =>{
-      console.log("inside");
-
-      try {
-        const q = query(collection(db, "users"), where("email", "==", auth.currentUser?.email));
-        
-        const querySnapshot = await getDocs(q);
-        querySnapshot.forEach((doc) => {
-         
-          // doc.data() is never undefined for query doc snapshots
-         
-          setUser(doc.data())
-         
-        });
-        console.log("User saved to Database: ", user)
-      } catch (error) {
-          console.log("error")
-      }
-     
-    }
- 
-  useEffect(() => {
-    fetchDoc()
-  }, [])
+  
 
   
+
+  const fetch = async () => {
+    try {
+      const user1 = await fetchDoc();
+    
+      setUser(user1);
+      console.log('My User:', user);
+    } catch (error) {
+     
+      console.log('Error fetching user:', error);
+    }
+   
+
+  };
+
+  useEffect(() => {
+   
+    fetch();
+
+  }, []);
 
 
 
@@ -55,8 +53,11 @@ const HomeScreen = ({navigation}:any) => {
 
      
    
-        <View className='w-full h-10 flex justify-center items-center bg-gray-800'>
-              <Text className='text-white '>{user?.email}</Text>
+        <View className='w-full h-10 flex-row flex space-x-5 justify-center items-center bg-gray-800'>
+              <Text className='text-white '>Email: {user?.email}</Text>
+             
+              <Text className='text-white '>Points: {user?.points}</Text>
+              
         </View>
 
 

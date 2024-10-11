@@ -1,15 +1,18 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons'; // Importing icon set
 import { auth } from '../firebase';
 import { useNavigation } from '@react-navigation/core';
 import { signOut } from 'firebase/auth';
+import { fetchDoc } from '../utils/getUser';
 
 
 
 const Navbar = () => {
 
   const navigation = useNavigation();
+
+
 
   const signout = () => {
     console.log('Sign Out');

@@ -1,23 +1,28 @@
-import { collection, getDocs, query, where } from "firebase/firestore";
+import { collection, doc, getDocs, query, where } from "firebase/firestore";
 import { auth, db } from "../firebase";
 
 export const fetchDoc =async () =>{
-    console.log("inside");
+  const usersCollection = collection(db, "users"); // Reference to the users collection
+  const q = query(usersCollection, where("email", "==", auth.currentUser?.email)); // Create a query to find the user by email
 
-    try {
-      const q = query(collection(db, "users"), where("email", "==", auth.currentUser?.email));
-      
-      const querySnapshot = await getDocs(q);
-      querySnapshot.forEach((doc) => {
-       
-        // doc.data() is never undefined for query doc snapshots
-        console.log("User saved to Database: ", doc.data())
-        return doc.data()
-       
-      });
-     
-    } catch (error) {
-        console.log("error")
+  try {
+    const querySnapshot = await getDocs(q); // Execute the query
+
+    if (querySnapshot.empty) {
+      console.log('No user found with this email:', auth.currentUser?.email);
+      return;
     }
+
+    // Assuming emails are unique, get the first document
+    const userDoc = querySnapshot.docs[0];
+
+    console.log('User found:', userDoc.data());
+   
+    return userDoc.data();
+    
+    
+  } catch (error) {
+    console.error('Error updating user data:', error);
+  }
    
   }

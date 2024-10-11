@@ -5,6 +5,7 @@ import quizData1 from '../JSON-files/quiz.json';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { auth } from '../firebase';
 import { updateUser } from '../utils/updateUser';
+import { fetchDoc } from '../utils/getUser';
 
 const quizData = quizData1.states_and_union_territories;
 
@@ -28,24 +29,48 @@ const QuizScreen: React.FC = ({navigation}:any) => {
     const [over, setOver] = useState(false);
     const [showSubmit, setShowSubmit] = useState(false);
     const [points, setPoints] = useState(0);
-
+    const [initializing, setInitializing] = useState(true);
+  
     const currentState = quizData[7];
     const currentQuestion = currentState.quiz[currentQuestionIndex];
 
-    useEffect(() => {
-        if (over) {
-            setPoints(score * 50);
-        }
-    }, [over, score]);
-
-    const handleOptionSelect = (option: string) => {
-        if (isAnswered) return;
-        setSelectedOption(option);
-        setIsAnswered(true);
-        if (option === currentQuestion.answer) {
-            setScore(score + 1);
+    const fetch = async () => {
+        try {
+            const user = await fetchDoc();
+            console.log("User: ", user);
+            if(user?.quiz.answered){
+                console.log("User has answered the quiz");
+                setScore(user.quiz.score);
+                setPoints(user?.points);
+                setOver(true);
+                setInitializing(false);
+            }
+        } catch (error) {
+            console.log("Error fetching user:", error);
         }
     };
+    console.log(over)
+    useEffect(() => {
+        fetch()
+    }, []);
+
+    
+  
+const handleOptionSelect = (option: string) => {
+    if (isAnswered) return;
+    setSelectedOption(option);
+    setIsAnswered(true);
+    if (option === currentQuestion.answer) {
+        console.log("score: ", score);
+        const newScore = score + 1;
+        setScore(newScore);
+        
+        const newPoints = newScore === 5 ? 250 : (newScore === 1 || newScore === 2) ? newScore * 50 : points;
+        setPoints(newPoints);
+    } else if (score === 0) {
+        setPoints(0);
+    }
+};
 
     const handleSubmit = () => {
         console.log("score: ", score);
@@ -56,6 +81,8 @@ const QuizScreen: React.FC = ({navigation}:any) => {
         updateUser(points, score);
 
     };
+
+
 
     const handleNextQuestion = () => {
         if (currentQuestionIndex < currentState.quiz.length - 1) {
@@ -75,6 +102,18 @@ const QuizScreen: React.FC = ({navigation}:any) => {
         if (option === selectedOption) return 'bg-red-500';
         return 'bg-gray-200';
     };
+
+    if (initializing) {
+        return (
+          <View style = {{flex:1, justifyContent: 'center', alignItems:'center'}}>
+            <Image
+                source={require('../assets/splash.png')}
+                style={{ width:340, height:340, opacity: 1 }}
+            />
+          </View>
+        ) // or a loading component
+      }
+
 
     if (over) {
         return (
