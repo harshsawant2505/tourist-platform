@@ -1,5 +1,5 @@
 import { View, Text, ImageBackground, StyleSheet, Image, Button, TouchableOpacity, ScrollView } from 'react-native'
-import React, { useCallback, useEffect, useLayoutEffect, useState } from 'react'
+import React, { useCallback, useEffect,  useState } from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import Navbar from '../components/Navbar';
 import firestore, { updateDoc } from '@react-native-firebase/firestore';
@@ -9,15 +9,16 @@ import { auth, db } from '../firebase';
 import { fetchDoc } from '../utils/getUser';
 import { useFocusEffect } from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-//this is the hom frome harsh final
-
+import * as Location from 'expo-location';
 import NetInfo from "@react-native-community/netinfo";
 
 const HomeScreen = ({navigation}:any) => {
+  const [currentState, setCurrentState] = useState<string | null>(null);
 
       const [user, setUser] = useState<any>(null);
 
-
+      const [location, setLocation] = useState(null);
+      const [errorMsg, setErrorMsg] = useState("");
   
   const fetchOnline = async()=>{
     try {
@@ -28,7 +29,8 @@ const HomeScreen = ({navigation}:any) => {
 
      
       setUser(user1);
-      console.log('My User:', user);
+     
+   
     } catch (error) {
      
       console.log('Error fetching user:', error);
@@ -48,7 +50,7 @@ const HomeScreen = ({navigation}:any) => {
 
   }
 
-  const fetch = async () => {
+  const fetchData = async () => {
 
     NetInfo.fetch().then(state => {
       if (!state.isConnected) {
@@ -62,26 +64,76 @@ const HomeScreen = ({navigation}:any) => {
        
       }
     });
+
+
    
 
   };
 
+  const getCurrentStateOnline = async (latitude: number, longitude: number) => {
+    try {
+      // Replace with your reverse geocoding API
+      const response = await fetch(`https://nominatim.openstreetmap.org/reverse?lat=${latitude}&lon=${longitude}&format=json`);
+      const data = await response.json();
+    data.state || "Unknown";
+    console.log("State: ", data.address.state)
+    
+   await AsyncStorage.setItem('state', data.address.state);
+    } catch (error) {
+      console.error('Error fetching state from geocoding API:', error);
+   
+    }
+  };
 
   useEffect(() => {
-    console.log("Navigation UseEffect");
-    fetch();
+    (async () => {
+      
+      let { status } = await Location.requestForegroundPermissionsAsync();
+      if (status !== 'granted') {
+        setErrorMsg('Permission to access location was denied');
+        return;
+      }
+
+      let location:any = await Location.getCurrentPositionAsync({});
+
+      NetInfo.fetch().then(state => {
+        if (!state.isConnected) {
+        
+        } else {
+          getCurrentStateOnline(location.coords.latitude, location.coords.longitude)
+          
+         
+        }
+      });
+  
+      
+      
+      
+      setLocation(location);
+      const storedState = await AsyncStorage.getItem('state');
+      if (storedState) {
+        setCurrentState(storedState);
+      }
+    })();
+    
 
    
 
-  }, [navigation]);
+  }, []);
 
+  let text = 'Waiting..';
+  if (errorMsg) {
+    text = errorMsg;
+  } else if (location) {
+    text = JSON.stringify(location);
+  }
 
-
+console.log(text)
   useFocusEffect(
     useCallback(() => {
       // Code to run when the screen is focused (e.g., page is loaded by back button)
       console.log('Screen is focused');
-      fetch();
+      fetchData();
 
       
 
@@ -214,7 +266,7 @@ const HomeScreen = ({navigation}:any) => {
               {/* location */}
               <View className='w-full h-[147px] py-5 px-5 rounded-md ' style={{ backgroundColor: 'rgba(255, 255, 255, 0.80)'}}>
                   <Text className='text-2xl  text-black  font-medium'>
-                  Manali, Himachal Pradesh
+                  Manali, {currentState?currentState:'Loading...'}
                   </Text>
                   <Text className='text-md text-gray-600 py-3 font-medium'>
                   A picturesque hill station nestled in the Himalayas, known for its snow-capped. known for its snow capped.
@@ -268,7 +320,7 @@ const HomeScreen = ({navigation}:any) => {
 
 
           <View className='w-full h-40 mb-10  flex-row '>
-              <ScrollView horizontal className='gap-3 px-1'>
+              <ScrollView horizontal className='gap-1 '>
                  <View className='w-28 h-28 bg-black items-center rounded-md' style={{ backgroundColor: 'rgba(0, 0, 0, 0.43)' }}>
                  <Image
                   source={require('../assets/envelope.png')}
@@ -289,7 +341,7 @@ const HomeScreen = ({navigation}:any) => {
                   className=" w-20 h-20 opacity-100 "
                   
                />
-                <Text className='text-white mt-2 text-sm font-medium'>Discovereddd</Text>
+                <Text className='text-white mt-2 text-sm font-medium'>Discovered</Text>
                  </TouchableOpacity>
                  <View className='w-28 h-28 bg-black items-center rounded-md' style={{ backgroundColor: 'rgba(0, 0, 0, 0.43)' }}>
                  <Image
