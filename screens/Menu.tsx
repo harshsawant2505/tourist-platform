@@ -2,13 +2,47 @@ import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, Image, ImageBackground, ScrollView } from 'react-native';
 import { useNavigation } from '@react-navigation/core';
 import Navbar from '../components/Navbar';
+import { fetchDoc } from '../utils/getUser';
+import { useState,useEffect } from 'react';
+import { signOut } from 'firebase/auth';
+import { Auth } from 'firebase/auth';
+import { auth } from '../firebase';
+import { SafeAreaView } from 'react-native-safe-area-context';
+
+
+interface UserSchema {
+    name: string;
+    email: string;
+}
 
 const Menu = () => {
     const navigation = useNavigation();
 
+    const [user, setUser] = useState<UserSchema>({ name: '', email: '' });
+
+    useEffect(() => {
+        fetchDoc().then((res) => {
+            setUser(res);
+        });
+    }, []);
+
+    const signout = () => {
+        console.log('Sign Out');
+        signOut(auth).then(() => {
+          navigation.navigate('SignIn' as never);
+    
+        }
+        ).catch((error:any) => {
+          console.log(error.message);
+        });
+      };
+    
+
     const handleRedirect = (screen) => {
         navigation.navigate(screen); // Pass the desired screen name
     };
+
+    
 
     return (
         <View style={styles.wrapper}>
@@ -21,7 +55,7 @@ const Menu = () => {
                         {/* Profile Header */}
                         <View style={styles.headerContainer}>
                             <Image source={require('../assets/wheel.png')} style={styles.icon} />
-                            <Text style={styles.profileName}>Harshita Grover</Text>
+                            <Text style={styles.profileName} >{user.name}</Text>
                         </View>
 
                         {/* Menu Items */}
@@ -45,6 +79,9 @@ const Menu = () => {
                                     <Image source={require('../assets/separator.png')} style={styles.separatorImage} />
                                 </View>
                             ))}
+                            <TouchableOpacity onPress={() => signout()}>
+                                <Text style={styles.logout} >Logout</Text>
+                            </TouchableOpacity>
                         </View>
 
                     </ScrollView>
@@ -59,9 +96,9 @@ const styles = StyleSheet.create({
     wrapper: {
         flex: 1,
         width: '100%',
-        justifyContent: 'flex-start',
+        justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: '#F0F0F0', // Background color of the entire screen
+        alignContent: 'center',
     },
     backgroundImage: {
         flex: 1,
@@ -74,8 +111,8 @@ const styles = StyleSheet.create({
         width: '100%',
         justifyContent: 'center', // Center the menu vertically
         alignItems: 'center',
-        paddingBottom: 20,
-        paddingVertical: 100 // Add padding to avoid overlap with the Navbar
+        paddingBottom: 0,
+        paddingVertical: 65 // Add padding to avoid overlap with the Navbar
     },
     scrollViewContent: {
         flexGrow: 1,
@@ -103,9 +140,10 @@ const styles = StyleSheet.create({
     profileName: {
         fontSize: 24,
         fontWeight: 'bold',
+        minWidth: "70%",
     },
     menuContainer: {
-        width: '100%', // Increased width to 90%
+        width: '100%', // Increased width to 100%
         justifyContent: 'flex-start',
         alignItems: 'center',
         backgroundColor: 'rgba(255, 255, 255, 0.9)', // Semi-transparent white
@@ -129,6 +167,15 @@ const styles = StyleSheet.create({
         height: 1.5, // Adjust height according to the image
         marginVertical: 5,
     },
+    logout:{
+        textAlign: 'left',
+        paddingVertical: 10,
+        fontWeight: 'bold',
+        paddingLeft: 20,
+        color: 'red',   
+        fontSize: 18,
+    }
 });
+
 
 export default Menu;
