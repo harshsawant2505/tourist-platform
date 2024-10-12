@@ -1,15 +1,17 @@
 import { View, Text, ImageBackground, StyleSheet, Image, Button, TouchableOpacity, ScrollView } from 'react-native'
-import React, { useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useLayoutEffect, useState } from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import Navbar from '../components/Navbar';
-import firestore from '@react-native-firebase/firestore';
+import firestore, { updateDoc } from '@react-native-firebase/firestore';
 import 'firebase/compat/app'
-import { collection, addDoc, doc, getDoc, query, where, getDocs } from "firebase/firestore"; 
+import { collection, addDoc, doc, getDoc, query, where, getDocs, setDoc } from "firebase/firestore"; 
 import { auth, db } from '../firebase';
 import { fetchDoc } from '../utils/getUser';
+import { useFocusEffect } from '@react-navigation/native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 //this is the hom frome harsh final
 
-
+import NetInfo from "@react-native-community/netinfo";
 
 const HomeScreen = ({navigation}:any) => {
 
@@ -17,28 +19,118 @@ const HomeScreen = ({navigation}:any) => {
 
 
   
-
-  
-
-  const fetch = async () => {
+  const fetchOnline = async()=>{
     try {
+
+      // updateFireStore()
+
       const user1 = await fetchDoc();
-    
+
+     
       setUser(user1);
       console.log('My User:', user);
     } catch (error) {
      
       console.log('Error fetching user:', error);
     }
+  }
+  
+  const fetchOffline = async() => {
+
+    try {
+      const jsonValue = await AsyncStorage.getItem('user');
+      if (jsonValue != null) {
+        setUser(JSON.parse(jsonValue));
+      }
+    } catch (e) {
+      console.log('Error fetching user:', e);
+    }
+
+  }
+
+  const fetch = async () => {
+
+    NetInfo.fetch().then(state => {
+      if (!state.isConnected) {
+        console.log("No internet connection");
+        fetchOffline()
+      } else {
+        console.log("Internet connection available");
+        updateFireStore()
+        fetchOnline()
+        
+       
+      }
+    });
    
 
   };
 
+
   useEffect(() => {
-   
+    console.log("Navigation UseEffect");
     fetch();
 
-  }, []);
+   
+
+  }, [navigation]);
+
+
+
+  useFocusEffect(
+    useCallback(() => {
+      // Code to run when the screen is focused (e.g., page is loaded by back button)
+      console.log('Screen is focused');
+      fetch();
+
+      
+
+      return () => {
+        // Optional: cleanup when the screen is unfocused
+        console.log('Screen is unfocused');
+      };
+    }, [])
+  );
+
+
+  const updateFireStore = async() =>{
+
+
+    try {
+
+      const jsonValue = await AsyncStorage.getItem('user');
+      let data = jsonValue != null ? JSON.parse(jsonValue) : {};
+      const usersCollection = collection(db, "users"); // Reference to the users collection
+      const q = query(usersCollection, where("email", "==",data.email )); // Create a query to find the user by email
+      
+      const querySnapshot = await getDocs(q); // Execute the query
+    
+      if (querySnapshot.empty) {
+        console.log('No user found with this email:', data.email);
+        return;
+      }
+  
+      // Assuming emails are unique, get the first document
+      const userDoc = querySnapshot.docs[0];
+      const userRef:any = doc(db, "users", userDoc.id); // Get a reference to the user's document
+  
+     
+      console.log("in here")
+  
+      await setDoc(userRef, data);
+  
+      console.log("Updated FireStore")
+     
+      
+    } catch (error) {
+        console.log(error)
+    }
+   
+
+    
+    
+ 
+  }
 
 
 
