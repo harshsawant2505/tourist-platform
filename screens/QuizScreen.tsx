@@ -33,10 +33,36 @@ const QuizScreen: React.FC = ({navigation}:any) => {
     const [points, setPoints] = useState(0);
     const [initializing, setInitializing] = useState(true);
     const [noInternet, setnointernet] = useState(false);
-    const currentState = quizData[7];
-    const currentQuestion = currentState.quiz[currentQuestionIndex];
+ 
+   
 
  
+
+    const [currentState, setCurrentState] = useState(quizData[0]);
+    const currentQuestion = currentState.quiz[currentQuestionIndex];
+
+    useEffect(() => {
+        const determineState = async () => {
+            try {
+                const state = await AsyncStorage.getItem('state');
+                if (state != null) {
+                 
+                    const userState = state;
+                    const stateIndex = quizData.findIndex(state => state.state === userState);
+                    console.log("State Index: ", stateIndex);
+                    if (stateIndex !== -1) {
+                        setCurrentState(quizData[stateIndex]);
+                    }
+                }
+            } catch (e) {
+                console.log('Error determining state:', e);
+            }
+        };
+
+        determineState();
+    }, []);
+
+    
 
     const fetchOnline = async()=>{
         try {
