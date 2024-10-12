@@ -30,7 +30,7 @@ const MysteryMap = () => {
           <Text className='text-white text-[40px] font-[600]' style={{ opacity: 1 }}>Mystery Maps</Text>
         </View>
 
-        {/* Add a wrapper View with absolute positioning for Navbar */}
+       
         <View style={{ position: 'absolute', bottom: 70, left: 0, right: 0, zIndex: 1 }}>
           <Navbar />
         </View>
