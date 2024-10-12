@@ -5,10 +5,7 @@ import Navbar from '../components/Navbar';
 import { fetchDoc } from '../utils/getUser';
 import { useState,useEffect } from 'react';
 import { signOut } from 'firebase/auth';
-import { Auth } from 'firebase/auth';
 import { auth } from '../firebase';
-import { SafeAreaView } from 'react-native-safe-area-context';
-
 
 interface UserSchema {
     name: string;
