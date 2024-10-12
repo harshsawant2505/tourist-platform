@@ -31,7 +31,7 @@ const Navbar = () => {
     <View style={styles.container}>
 
       <View style={styles.Navbar}>
-        <TouchableOpacity style={styles.navButton}>
+        <TouchableOpacity style={styles.navButton} onPress={()=>navigation.navigate('Home' as never)}>
           <Icon name="home" size={30} color="#FFFFFF" />
           <Text style={styles.navText}>Home</Text>
         </TouchableOpacity>
@@ -47,7 +47,7 @@ const Navbar = () => {
           <Icon name="map" size={30} color="#FFFFFF" />
           <Text style={styles.navText}>Maps</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.navButton} onPress={()=>navigation.navigate('Menu')}>
+        <TouchableOpacity style={styles.navButton} onPress={()=>navigation.navigate('Menu' as never)}>
           <Icon name="menu" size={30} color="#FFFFFF" />
           <Text style={styles.navText}>Menu</Text>
         </TouchableOpacity>

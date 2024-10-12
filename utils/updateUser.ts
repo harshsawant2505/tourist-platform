@@ -1,4 +1,4 @@
-import { collection, doc, getDocs, query, updateDoc, where } from "firebase/firestore";
+import { collection, doc, getDocs, query, updateDoc, where, serverTimestamp } from "firebase/firestore";
 import { auth, db } from "../firebase";
 
 
@@ -26,7 +26,9 @@ export const updateUser = async (points:any, score:any) => {
         points: userDoc.data()?.points + points, // Update the points field
         quiz:{
             score: userDoc.data().quiz?.score + score ,
-        }
+            answered: true
+        },
+        updatedAt: serverTimestamp()
       });
       console.log('User data updated successfully:', userRef.id);
     } catch (error) {
