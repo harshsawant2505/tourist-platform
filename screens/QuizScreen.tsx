@@ -38,7 +38,10 @@ const QuizScreen: React.FC = ({navigation}:any) => {
         try {
             const user = await fetchDoc();
             console.log("User: ", user);
-            if(user?.quiz.answered){
+            if(user){
+                setInitializing(false);
+            }
+            if(user?.quiz?.answered){
                 console.log("User has answered the quiz");
                 setScore(user.quiz.score);
                 setPoints(user?.points);
