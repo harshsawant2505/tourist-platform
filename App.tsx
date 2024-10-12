@@ -8,6 +8,7 @@ import HomeScreen from './screens/HomeScreen';
 import SignUpScreen from './screens/SignUpScreen';
 import SignInScreen from './screens/SignInScreen';
 import { useEffect, useState } from 'react';
+import Menu from './screens/Menu';
 
 import { auth } from './firebase';
 import { onAuthStateChanged } from 'firebase/auth';
@@ -72,6 +73,7 @@ function App() {
           <Stack.Screen name="quiz" component={QuizScreen} />
           <Stack.Screen name="SignIn" component={SignInScreen} />
           <Stack.Screen name="SignUp" component={SignUpScreen} />
+          <Stack.Screen name="Menu" component={Menu} />
           
           </Stack.Navigator>
 
