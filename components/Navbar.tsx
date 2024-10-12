@@ -1,15 +1,18 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons'; // Importing icon set
 import { auth } from '../firebase';
 import { useNavigation } from '@react-navigation/core';
 import { signOut } from 'firebase/auth';
-
+import { fetchDoc } from '../utils/getUser';
+import Menu from '../screens/Menu';
 
 
 const Navbar = () => {
 
   const navigation = useNavigation();
+
+
 
   const signout = () => {
     console.log('Sign Out');
@@ -22,13 +25,11 @@ const Navbar = () => {
     });
   };
 
+
+
   return (
     <View style={styles.container}>
-      <View style={styles.content}>
-        <Text style={styles.mainText}>Main Content Goes Here</Text>
-      </View>
 
-      {/* Bottom Navigation Bar */}
       <View style={styles.Navbar}>
         <TouchableOpacity style={styles.navButton}>
           <Icon name="home" size={30} color="#FFFFFF" />
@@ -46,7 +47,7 @@ const Navbar = () => {
           <Icon name="map" size={30} color="#FFFFFF" />
           <Text style={styles.navText}>Maps</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.navButton} onPress={signout}>
+        <TouchableOpacity style={styles.navButton} onPress={()=>navigation.navigate('Menu')}>
           <Icon name="menu" size={30} color="#FFFFFF" />
           <Text style={styles.navText}>Menu</Text>
         </TouchableOpacity>

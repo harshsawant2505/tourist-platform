@@ -1,0 +1,845 @@
+{
+    "states_and_union_territories": [
+      {
+        "state": "Andhra Pradesh",
+        "quiz": [
+          {
+            "question": "What is the official language of Andhra Pradesh?",
+            "options": ["Telugu", "Kannada", "Tamil", "Hindi"],
+            "answer": "Telugu"
+          },
+          {
+            "question": "Which city is known as the 'City of Destiny' in Andhra Pradesh?",
+            "options": ["Visakhapatnam", "Vijayawada", "Guntur", "Tirupati"],
+            "answer": "Visakhapatnam"
+          },
+          {
+            "question": "Which temple in Andhra Pradesh is a famous pilgrimage site?",
+            "options": ["Tirumala Venkateswara Temple", "Meenakshi Temple", "Somnath Temple", "Jagannath Temple"],
+            "answer": "Tirumala Venkateswara Temple"
+          },
+          {
+            "question": "Which river flows through Andhra Pradesh?",
+            "options": ["Godavari", "Ganga", "Yamuna", "Brahmaputra"],
+            "answer": "Godavari"
+          },
+          {
+            "question": "Which traditional dance form originated in Andhra Pradesh?",
+            "options": ["Kuchipudi", "Kathakali", "Bharatanatyam", "Odissi"],
+            "answer": "Kuchipudi"
+          }
+        ]
+      },
+      {
+        "state": "Arunachal Pradesh",
+        "quiz": [
+          {
+            "question": "What is the capital of Arunachal Pradesh?",
+            "options": ["Itanagar", "Aizawl", "Imphal", "Gangtok"],
+            "answer": "Itanagar"
+          },
+          {
+            "question": "Which mountain range is found in Arunachal Pradesh?",
+            "options": ["Himalayas", "Aravalli", "Satpura", "Vindhya"],
+            "answer": "Himalayas"
+          },
+          {
+            "question": "What is the official state animal of Arunachal Pradesh?",
+            "options": ["Mithun", "Elephant", "Tiger", "Lion"],
+            "answer": "Mithun"
+          },
+          {
+            "question": "Which river flows through Arunachal Pradesh?",
+            "options": ["Brahmaputra", "Ganga", "Godavari", "Yamuna"],
+            "answer": "Brahmaputra"
+          },
+          {
+            "question": "Which of these festivals is celebrated in Arunachal Pradesh?",
+            "options": ["Losar", "Durga Puja", "Pongal", "Baisakhi"],
+            "answer": "Losar"
+          }
+        ]
+      },
+      {
+        "state": "Assam",
+        "quiz": [
+          {
+            "question": "What is the capital of Assam?",
+            "options": ["Dispur", "Guwahati", "Jorhat", "Silchar"],
+            "answer": "Dispur"
+          },
+          {
+            "question": "Which tea is Assam famous for?",
+            "options": ["Black Tea", "Green Tea", "White Tea", "Oolong Tea"],
+            "answer": "Black Tea"
+          },
+          {
+            "question": "Which festival is celebrated in Assam?",
+            "options": ["Bihu", "Onam", "Holi", "Diwali"],
+            "answer": "Bihu"
+          },
+          {
+            "question": "Which national park in Assam is a UNESCO World Heritage Site?",
+            "options": ["Kaziranga", "Gir", "Sundarbans", "Corbett"],
+            "answer": "Kaziranga"
+          },
+          {
+            "question": "Which river is known as the lifeline of Assam?",
+            "options": ["Brahmaputra", "Ganga", "Godavari", "Krishna"],
+            "answer": "Brahmaputra"
+          }
+        ]
+      },
+      {
+        "state": "Bihar",
+        "quiz": [
+          {
+            "question": "What is the capital of Bihar?",
+            "options": ["Patna", "Gaya", "Bhagalpur", "Muzaffarpur"],
+            "answer": "Patna"
+          },
+          {
+            "question": "Which ancient university was located in Bihar?",
+            "options": ["Nalanda", "Takshashila", "Vikramashila", "Jagaddala"],
+            "answer": "Nalanda"
+          },
+          {
+            "question": "Which festival is widely celebrated in Bihar?",
+            "options": ["Chhath Puja", "Onam", "Pongal", "Navratri"],
+            "answer": "Chhath Puja"
+          },
+          {
+            "question": "Which river flows through Bihar?",
+            "options": ["Ganga", "Yamuna", "Godavari", "Brahmaputra"],
+            "answer": "Ganga"
+          },
+          {
+            "question": "Which of these is a historical site in Bihar?",
+            "options": ["Bodh Gaya", "Ajanta Caves", "Hampi", "Jaisalmer Fort"],
+            "answer": "Bodh Gaya"
+          }
+        ]
+      },
+      {
+        "state": "Goa",
+        "quiz": [
+          {
+            "question": "What is the capital of Goa?",
+            "options": ["Panaji", "Margao", "Vasco da Gama", "Mapusa"],
+            "answer": "Panaji"
+          },
+          {
+            "question": "Which beach is a famous tourist attraction in Goa?",
+            "options": ["Baga Beach", "Marina Beach", "Juhu Beach", "Kovalam Beach"],
+            "answer": "Baga Beach"
+          },
+          {
+            "question": "Which festival is widely celebrated in Goa?",
+            "options": ["Goa Carnival", "Durga Puja", "Lohri", "Onam"],
+            "answer": "Goa Carnival"
+          },
+          {
+            "question": "What is the official language of Goa?",
+            "options": ["Konkani", "Marathi", "Hindi", "English"],
+            "answer": "Konkani"
+          },
+          {
+            "question": "Which Portuguese-era church is a UNESCO World Heritage Site in Goa?",
+            "options": ["Basilica of Bom Jesus", "St. Paul’s Cathedral", "St. Stephen’s Church", "Se Cathedral"],
+            "answer": "Basilica of Bom Jesus"
+          }
+        ]
+      },
+      {
+        "state": "Gujarat",
+        "quiz": [
+          {
+            "question": "What is the capital of Gujarat?",
+            "options": ["Gandhinagar", "Ahmedabad", "Rajkot", "Surat"],
+            "answer": "Gandhinagar"
+          },
+          {
+            "question": "Which historical figure was born in Gujarat?",
+            "options": ["Mahatma Gandhi", "Jawaharlal Nehru", "Subhas Chandra Bose", "Sardar Patel"],
+            "answer": "Mahatma Gandhi"
+          },
+          {
+            "question": "Which desert is located in Gujarat?",
+            "options": ["Rann of Kutch", "Thar Desert", "Deccan Plateau", "Chilika"],
+            "answer": "Rann of Kutch"
+          },
+          {
+            "question": "Which festival is widely celebrated in Gujarat?",
+            "options": ["Navratri", "Bihu", "Pongal", "Onam"],
+            "answer": "Navratri"
+          },
+          {
+            "question": "Which river flows through Gujarat?",
+            "options": ["Sabarmati", "Godavari", "Ganga", "Krishna"],
+            "answer": "Sabarmati"
+          }
+        ]
+      },
+      {
+        "state": "Haryana",
+        "quiz": [
+          {
+            "question": "What is the capital of Haryana?",
+            "options": ["Chandigarh", "Gurgaon", "Faridabad", "Panipat"],
+            "answer": "Chandigarh"
+          },
+          {
+            "question": "Which battle was fought in Haryana?",
+            "options": ["Battle of Panipat", "Battle of Plassey", "Battle of Haldighati", "Battle of Buxar"],
+            "answer": "Battle of Panipat"
+          },
+          {
+            "question": "Which city is known as the 'Cyber City' in Haryana?",
+            "options": ["Gurgaon", "Faridabad", "Ambala", "Panipat"],
+            "answer": "Gurgaon"
+          },
+          {
+            "question": "Which sport is most popular in Haryana?",
+            "options": ["Wrestling", "Football", "Hockey", "Basketball"],
+            "answer": "Wrestling"
+          },
+          {
+            "question": "Which famous pilgrimage site is located in Haryana?",
+            "options": ["Kurukshetra", "Amarnath", "Vaishno Devi", "Tirupati"],
+            "answer": "Kurukshetra"
+          }
+        ]
+      },
+      {
+        "state": "Himachal Pradesh",
+        "quiz": [
+          {
+            "question": "What is the capital of Himachal Pradesh?",
+            "options": ["Shimla", "Manali", "Dharamshala", "Kullu"],
+            "answer": "Shimla"
+          },
+          {
+            "question": "Which is a popular hill station in Himachal Pradesh?",
+            "options": ["Manali", "Ooty", "Mount Abu", "Mussoorie"],
+            "answer": "Manali"
+          },
+          {
+            "question": "Which river flows through Himachal Pradesh?",
+            "options": ["Beas", "Ganga", "Yamuna", "Brahmaputra"],
+            "answer": "Beas"
+          },
+          {
+            "question": "Which festival is widely celebrated in Himachal Pradesh?",
+            "options": ["Kullu Dussehra", "Durga Puja", "Diwali", "Baisakhi"],
+            "answer": "Kullu Dussehra"
+          },
+          {
+            "question": "Which of these is a famous monastery in Himachal Pradesh?",
+            "options": ["Key Monastery", "Rumtek Monastery", "Hemis Monastery", "Tawang Monastery"],
+            "answer": "Key Monastery"
+          }
+        ]
+      },
+      {
+        "state": "Jammu and Kashmir",
+        "quiz": [
+          {
+            "question": "What is the summer capital of Jammu and Kashmir?",
+            "options": ["Srinagar", "Jammu", "Leh", "Anantnag"],
+            "answer": "Srinagar"
+          },
+          {
+            "question": "Which lake is a famous tourist attraction in Kashmir?",
+            "options": ["Dal Lake", "Chilika Lake", "Loktak Lake", "Wular Lake"],
+            "answer": "Dal Lake"
+          },
+          {
+            "question": "Which river flows through Jammu and Kashmir?",
+            "options": ["Jhelum", "Ganga", "Yamuna", "Godavari"],
+            "answer": "Jhelum"
+          },
+          {
+            "question": "Which of these is a famous shrine in Jammu?",
+            "options": ["Vaishno Devi", "Golden Temple", "Meenakshi Temple", "Somnath Temple"],
+            "answer": "Vaishno Devi"
+          },
+          {
+            "question": "Which fruit is Kashmir famous for?",
+            "options": ["Apple", "Mango", "Banana", "Pineapple"],
+            "answer": "Apple"
+          }
+        ]
+      },
+      {
+        "state": "Jharkhand",
+        "quiz": [
+          {
+            "question": "What is the capital of Jharkhand?",
+            "options": ["Ranchi", "Jamshedpur", "Bokaro", "Dhanbad"],
+            "answer": "Ranchi"
+          },
+          {
+            "question": "Which waterfall is a famous tourist attraction in Jharkhand?",
+            "options": ["Hundru Falls", "Jog Falls", "Athirappilly Falls", "Dudhsagar Falls"],
+            "answer": "Hundru Falls"
+          },
+          {
+            "question": "Which mineral is Jharkhand known for?",
+            "options": ["Coal", "Gold", "Bauxite", "Iron Ore"],
+            "answer": "Coal"
+          },
+          {
+            "question": "Which national park is located in Jharkhand?",
+            "options": ["Betla National Park", "Jim Corbett", "Sundarbans", "Kaziranga"],
+            "answer": "Betla National Park"
+          },
+          {
+            "question": "Which festival is widely celebrated in Jharkhand?",
+            "options": ["Sarhul", "Durga Puja", "Onam", "Lohri"],
+            "answer": "Sarhul"
+          }
+        ]
+      },
+      {
+        "state": "Karnataka",
+        "quiz": [
+          {
+            "question": "What is the capital of Karnataka?",
+            "options": ["Bengaluru", "Mysuru", "Mangalore", "Hubli"],
+            "answer": "Bengaluru"
+          },
+          {
+            "question": "Which festival is famously celebrated in Karnataka?",
+            "options": ["Dussehra", "Diwali", "Pongal", "Holi"],
+            "answer": "Dussehra"
+          },
+          {
+            "question": "Which river flows through Karnataka?",
+            "options": ["Krishna", "Kaveri", "Godavari", "Yamuna"],
+            "answer": "Kaveri"
+          },
+          {
+            "question": "Which historic city is known for its palaces in Karnataka?",
+            "options": ["Mysuru", "Hampi", "Gadag", "Bijapur"],
+            "answer": "Mysuru"
+          },
+          {
+            "question": "Which dance form originated in Karnataka?",
+            "options": ["Kathak", "Bharatanatyam", "Yakshagana", "Kathakali"],
+            "answer": "Yakshagana"
+          }
+        ]
+      },
+      {
+        "state": "Kerala",
+        "quiz": [
+          {
+            "question": "What is the capital of Kerala?",
+            "options": ["Thiruvananthapuram", "Kochi", "Kozhikode", "Trivandrum"],
+            "answer": "Thiruvananthapuram"
+          },
+          {
+            "question": "Which dance form is Kerala famous for?",
+            "options": ["Kathakali", "Bharatanatyam", "Manipuri", "Odissi"],
+            "answer": "Kathakali"
+          },
+          {
+            "question": "Which festival is widely celebrated in Kerala?",
+            "options": ["Onam", "Pongal", "Bihu", "Navratri"],
+            "answer": "Onam"
+          },
+          {
+            "question": "Which river is known as the lifeline of Kerala?",
+            "options": ["Periyar", "Godavari", "Krishna", "Tungabhadra"],
+            "answer": "Periyar"
+          },
+          {
+            "question": "What is the famous backwater destination in Kerala?",
+            "options": ["Alleppey", "Goa", "Pondicherry", "Kanyakumari"],
+            "answer": "Alleppey"
+          }
+        ]
+      },
+      {
+        "state": "Madhya Pradesh",
+        "quiz": [
+          {
+            "question": "What is the capital of Madhya Pradesh?",
+            "options": ["Bhopal", "Indore", "Gwalior", "Jabalpur"],
+            "answer": "Bhopal"
+          },
+          {
+            "question": "Which national park is located in Madhya Pradesh?",
+            "options": ["Kanha", "Corbett", "Sundarbans", "Kaziranga"],
+            "answer": "Kanha"
+          },
+          {
+            "question": "Which festival is famously celebrated in Madhya Pradesh?",
+            "options": ["Navratri", "Holi", "Diwali", "Baisakhi"],
+            "answer": "Navratri"
+          },
+          {
+            "question": "Which river flows through Madhya Pradesh?",
+            "options": ["Narmada", "Tapi", "Godavari", "Yamuna"],
+            "answer": "Narmada"
+          },
+          {
+            "question": "Which historical site is located in Madhya Pradesh?",
+            "options": ["Khajuraho", "Hampi", "Ajanta", "Ellora"],
+            "answer": "Khajuraho"
+          }
+        ]
+      },
+      {
+        "state": "Maharashtra",
+        "quiz": [
+          {
+            "question": "What is the capital of Maharashtra?",
+            "options": ["Mumbai", "Pune", "Nagpur", "Aurangabad"],
+            "answer": "Mumbai"
+          },
+          {
+            "question": "Which festival is widely celebrated in Maharashtra?",
+            "options": ["Ganesh Chaturthi", "Diwali", "Holi", "Pongal"],
+            "answer": "Ganesh Chaturthi"
+          },
+          {
+            "question": "Which is the famous hill station in Maharashtra?",
+            "options": ["Lonavala", "Ooty", "Munnar", "Mahabaleshwar"],
+            "answer": "Lonavala"
+          },
+          {
+            "question": "Which river flows through Maharashtra?",
+            "options": ["Godavari", "Krishna", "Narmada", "Tapi"],
+            "answer": "Godavari"
+          },
+          {
+            "question": "Which monument is a UNESCO World Heritage Site in Maharashtra?",
+            "options": ["Ajanta Caves", "Khajuraho", "Hampi", "Red Fort"],
+            "answer": "Ajanta Caves"
+          }
+        ]
+      },
+      {
+        "state": "Manipur",
+        "quiz": [
+          {
+            "question": "What is the capital of Manipur?",
+            "options": ["Imphal", "Kohima", "Aizawl", "Agartala"],
+            "answer": "Imphal"
+          },
+          {
+            "question": "Which dance form is famous in Manipur?",
+            "options": ["Manipuri", "Kathakali", "Bharatanatyam", "Odissi"],
+            "answer": "Manipuri"
+          },
+          {
+            "question": "Which festival is celebrated in Manipur?",
+            "options": ["Yaoshang", "Bihu", "Holi", "Onam"],
+            "answer": "Yaoshang"
+          },
+          {
+            "question": "Which lake is a famous tourist attraction in Manipur?",
+            "options": ["Loktak Lake", "Dal Lake", "Chilika Lake", "Wular Lake"],
+            "answer": "Loktak Lake"
+          },
+          {
+            "question": "Which sport is popular in Manipur?",
+            "options": ["Hockey", "Football", "Basketball", "Cricket"],
+            "answer": "Football"
+          }
+        ]
+      },
+      {
+        "state": "Meghalaya",
+        "quiz": [
+          {
+            "question": "What is the capital of Meghalaya?",
+            "options": ["Shillong", "Tura", "Jowai", "Nongpoh"],
+            "answer": "Shillong"
+          },
+          {
+            "question": "Which festival is widely celebrated in Meghalaya?",
+            "options": ["Shad Suk Mynsiem", "Durga Puja", "Pongal", "Bihu"],
+            "answer": "Shad Suk Mynsiem"
+          },
+          {
+            "question": "Which river flows through Meghalaya?",
+            "options": ["Brahmaputra", "Ganga", "Umiam", "Godavari"],
+            "answer": "Umiam"
+          },
+          {
+            "question": "What is the famous living root bridge in Meghalaya?",
+            "options": ["Nongriat Bridge", "Umshiang Bridge", "Jingmaham Bridge", "Wahkhen Bridge"],
+            "answer": "Nongriat Bridge"
+          },
+          {
+            "question": "Which tribe is predominant in Meghalaya?",
+            "options": ["Khasi", "Garo", "Pnar", "All of the above"],
+            "answer": "All of the above"
+          }
+        ]
+      },
+      {
+        "state": "Mizoram",
+        "quiz": [
+          {
+            "question": "What is the capital of Mizoram?",
+            "options": ["Aizawl", "Agartala", "Kohima", "Imphal"],
+            "answer": "Aizawl"
+          },
+          {
+            "question": "Which festival is celebrated in Mizoram?",
+            "options": ["Chapchar Kut", "Onam", "Bihu", "Holi"],
+            "answer": "Chapchar Kut"
+          },
+          {
+            "question": "What is the traditional dance of Mizoram?",
+            "options": ["Cheraw", "Bharatanatyam", "Kathak", "Manipuri"],
+            "answer": "Cheraw"
+          },
+          {
+            "question": "Which river flows through Mizoram?",
+            "options": ["Lunglei", "Tlawng", "Koladyne", "Dampa"],
+            "answer": "Tlawng"
+          },
+          {
+            "question": "What is the official language of Mizoram?",
+            "options": ["Mizo", "Manipuri", "Bodo", "Koch"],
+            "answer": "Mizo"
+          }
+        ]
+      },
+      {
+        "state": "Nagaland",
+        "quiz": [
+          {
+            "question": "What is the capital of Nagaland?",
+            "options": ["Kohima", "Dimapur", "Mon", "Zunheboto"],
+            "answer": "Kohima"
+          },
+          {
+            "question": "Which festival is famously celebrated in Nagaland?",
+            "options": ["Hornbill Festival", "Bihu", "Onam", "Pongal"],
+            "answer": "Hornbill Festival"
+          },
+          {
+            "question": "Which tribe is predominant in Nagaland?",
+            "options": ["Konyak", "Ao", "Lotha", "All of the above"],
+            "answer": "All of the above"
+          },
+          {
+            "question": "Which river flows through Nagaland?",
+            "options": ["Doyang", "Brahmaputra", "Godavari", "Krishna"],
+            "answer": "Doyang"
+          },
+          {
+            "question": "What is the traditional dance of Nagaland?",
+            "options": ["Cheraw", "Naga Dance", "Bharatanatyam", "Kathakali"],
+            "answer": "Naga Dance"
+          }
+        ]
+      },
+      {
+        "state": "Odisha",
+        "quiz": [
+          {
+            "question": "What is the capital of Odisha?",
+            "options": ["Bhubaneswar", "Cuttack", "Rourkela", "Sambalpur"],
+            "answer": "Bhubaneswar"
+          },
+          {
+            "question": "Which dance form is Odisha famous for?",
+            "options": ["Odissi", "Kathakali", "Bharatanatyam", "Manipuri"],
+            "answer": "Odissi"
+          },
+          {
+            "question": "Which temple is a UNESCO World Heritage Site in Odisha?",
+            "options": ["Konark Sun Temple", "Brihadeeswarar Temple", "Khajuraho", "Jagannath Temple"],
+            "answer": "Konark Sun Temple"
+          },
+          {
+            "question": "Which festival is widely celebrated in Odisha?",
+            "options": ["Rath Yatra", "Onam", "Pongal", "Bihu"],
+            "answer": "Rath Yatra"
+          },
+          {
+            "question": "Which river flows through Odisha?",
+            "options": ["Mahanadi", "Godavari", "Krishna", "Yamuna"],
+            "answer": "Mahanadi"
+          }
+        ]
+      },
+      {
+        "state": "Punjab",
+        "quiz": [
+          {
+            "question": "What is the capital of Punjab?",
+            "options": ["Chandigarh", "Amritsar", "Ludhiana", "Jalandhar"],
+            "answer": "Chandigarh"
+          },
+          {
+            "question": "Which festival is famously celebrated in Punjab?",
+            "options": ["Baisakhi", "Diwali", "Holi", "Eid"],
+            "answer": "Baisakhi"
+          },
+          {
+            "question": "What is the holy book of Sikhism?",
+            "options": ["Guru Granth Sahib", "Quran", "Bible", "Vedas"],
+            "answer": "Guru Granth Sahib"
+          },
+          {
+            "question": "Which river flows through Punjab?",
+            "options": ["Sutlej", "Ganga", "Yamuna", "Beas"],
+            "answer": "Sutlej"
+          },
+          {
+            "question": "Which is the famous temple in Amritsar?",
+            "options": ["Golden Temple", "Somnath Temple", "Jagannath Temple", "Tirupati Temple"],
+            "answer": "Golden Temple"
+          }
+        ]
+      },
+      {
+        "state": "Rajasthan",
+        "quiz": [
+          {
+            "question": "What is the capital of Rajasthan?",
+            "options": ["Jaipur", "Udaipur", "Jodhpur", "Ajmer"],
+            "answer": "Jaipur"
+          },
+          {
+            "question": "Which fort is a UNESCO World Heritage Site in Rajasthan?",
+            "options": ["Jaisalmer Fort", "Red Fort", "Agra Fort", "Golconda Fort"],
+            "answer": "Jaisalmer Fort"
+          },
+          {
+            "question": "Which festival is widely celebrated in Rajasthan?",
+            "options": ["Teej", "Diwali", "Holi", "Navratri"],
+            "answer": "Teej"
+          },
+          {
+            "question": "Which river flows through Rajasthan?",
+            "options": ["Sutlej", "Ganga", "Brahmaputra", "Ghaggar"],
+            "answer": "Ghaggar"
+          },
+          {
+            "question": "What is the traditional dance of Rajasthan?",
+            "options": ["Ghoomar", "Bharatanatyam", "Kathak", "Odissi"],
+            "answer": "Ghoomar"
+          }
+        ]
+      },
+      {
+        "state": "Sikkim",
+        "quiz": [
+          {
+            "question": "What is the capital of Sikkim?",
+            "options": ["Gangtok", "Pelling", "Namchi", "Mangan"],
+            "answer": "Gangtok"
+          },
+          {
+            "question": "Which festival is famously celebrated in Sikkim?",
+            "options": ["Losar", "Holi", "Diwali", "Baisakhi"],
+            "answer": "Losar"
+          },
+          {
+            "question": "Which mountain is the highest in Sikkim?",
+            "options": ["Kangchenjunga", "Everest", "K2", "Makalu"],
+            "answer": "Kangchenjunga"
+          },
+          {
+            "question": "Which river flows through Sikkim?",
+            "options": ["Teesta", "Ganga", "Brahmaputra", "Yamuna"],
+            "answer": "Teesta"
+          },
+          {
+            "question": "Which dance form is popular in Sikkim?",
+            "options": ["Mask Dance", "Bharatanatyam", "Kathakali", "Odissi"],
+            "answer": "Mask Dance"
+          }
+        ]
+      },
+      {
+        "state": "Tamil Nadu",
+        "quiz": [
+          {
+            "question": "What is the capital of Tamil Nadu?",
+            "options": ["Chennai", "Madurai", "Coimbatore", "Tiruchirappalli"],
+            "answer": "Chennai"
+          },
+          {
+            "question": "Which dance form originated in Tamil Nadu?",
+            "options": ["Bharatanatyam", "Kathak", "Odissi", "Kuchipudi"],
+            "answer": "Bharatanatyam"
+          },
+          {
+            "question": "Which festival is widely celebrated in Tamil Nadu?",
+            "options": ["Pongal", "Diwali", "Holi", "Navratri"],
+            "answer": "Pongal"
+          },
+          {
+            "question": "Which river flows through Tamil Nadu?",
+            "options": ["Kaveri", "Godavari", "Krishna", "Yamuna"],
+            "answer": "Kaveri"
+          },
+          {
+            "question": "Which temple is famous in Tamil Nadu?",
+            "options": ["Brihadeeswarar Temple", "Golden Temple", "Jagannath Temple", "Somnath Temple"],
+            "answer": "Brihadeeswarar Temple"
+          }
+        ]
+      },
+      {
+        "state": "Telangana",
+        "quiz": [
+          {
+            "question": "What is the capital of Telangana?",
+            "options": ["Hyderabad", "Warangal", "Nizamabad", "Khammam"],
+            "answer": "Hyderabad"
+          },
+          {
+            "question": "Which festival is famously celebrated in Telangana?",
+            "options": ["Bonalu", "Holi", "Diwali", "Pongal"],
+            "answer": "Bonalu"
+          },
+          {
+            "question": "Which lake is a famous tourist attraction in Telangana?",
+            "options": ["Hussain Sagar", "Dal Lake", "Vembanad Lake", "Kumarakom Lake"],
+            "answer": "Hussain Sagar"
+          },
+          {
+            "question": "Which river flows through Telangana?",
+            "options": ["Godavari", "Krishna", "Yamuna", "Sutlej"],
+            "answer": "Godavari"
+          },
+          {
+            "question": "Which monument is a UNESCO World Heritage Site in Telangana?",
+            "options": ["Golconda Fort", "Red Fort", "Ajanta Caves", "Hampi"],
+            "answer": "Golconda Fort"
+          }
+        ]
+      },
+      {
+        "state": "Tripura",
+        "quiz": [
+          {
+            "question": "What is the capital of Tripura?",
+            "options": ["Agartala", "Tripura Sundari", "Dharmanagar", "Udaipur"],
+            "answer": "Agartala"
+          },
+          {
+            "question": "Which festival is widely celebrated in Tripura?",
+            "options": ["Durga Puja", "Bihu", "Onam", "Pongal"],
+            "answer": "Durga Puja"
+          },
+          {
+            "question": "Which dance form is popular in Tripura?",
+            "options": ["Hojagiri", "Kathak", "Bharatanatyam", "Manipuri"],
+            "answer": "Hojagiri"
+          },
+          {
+            "question": "Which river flows through Tripura?",
+            "options": ["Khowai", "Barak", "Ganga", "Brahmaputra"],
+            "answer": "Barak"
+          },
+          {
+            "question": "Which is the famous temple in Tripura?",
+            "options": ["Tripura Sundari Temple", "Jagannath Temple", "Golden Temple", "Brihadeeswarar Temple"],
+            "answer": "Tripura Sundari Temple"
+          }
+        ]
+      },
+      {
+        "state": "Uttar Pradesh",
+        "quiz": [
+          {
+            "question": "What is the capital of Uttar Pradesh?",
+            "options": ["Lucknow", "Agra", "Varanasi", "Kanpur"],
+            "answer": "Lucknow"
+          },
+          {
+            "question": "Which monument is a UNESCO World Heritage Site in Uttar Pradesh?",
+            "options": ["Taj Mahal", "Ajanta Caves", "Hampi", "Khajuraho"],
+            "answer": "Taj Mahal"
+          },
+          {
+            "question": "Which festival is widely celebrated in Uttar Pradesh?",
+            "options": ["Diwali", "Holi", "Eid", "Dussehra"],
+            "answer": "Diwali"
+          },
+          {
+            "question": "Which river flows through Uttar Pradesh?",
+            "options": ["Ganga", "Yamuna", "Saraswati", "Narmada"],
+            "answer": "Ganga"
+          },
+          {
+            "question": "Which city is known for its rich culture and heritage in Uttar Pradesh?",
+            "options": ["Varanasi", "Agra", "Lucknow", "Kanpur"],
+            "answer": "Varanasi"
+          }
+        ]
+      },
+      {
+        "state": "Uttarakhand",
+        "quiz": [
+          {
+            "question": "What is the capital of Uttarakhand?",
+            "options": ["Dehradun", "Haridwar", "Nainital", "Rudraprayag"],
+            "answer": "Dehradun"
+          },
+          {
+            "question": "Which national park is a UNESCO World Heritage Site in Uttarakhand?",
+            "options": ["Jim Corbett", "Kaziranga", "Sundarbans", "Bandhavgarh"],
+            "answer": "Jim Corbett"
+          },
+          {
+            "question": "Which festival is famously celebrated in Uttarakhand?",
+            "options": ["Makar Sankranti", "Diwali", "Holi", "Baisakhi"],
+            "answer": "Makar Sankranti"
+          },
+          {
+            "question": "Which river flows through Uttarakhand?",
+            "options": ["Ganga", "Yamuna", "Narmada", "Krishna"],
+            "answer": "Ganga"
+          },
+          {
+            "question": "Which pilgrimage site is located in Uttarakhand?",
+            "options": ["Badrinath", "Vaishno Devi", "Tirupati", "Amarnath"],
+            "answer": "Badrinath"
+          }
+        ]
+      },
+      {
+        "state": "West Bengal",
+        "quiz": [
+          {
+            "question": "What is the capital of West Bengal?",
+            "options": ["Kolkata", "Darjeeling", "Siliguri", "Asansol"],
+            "answer": "Kolkata"
+          },
+          {
+            "question": "Which festival is widely celebrated in West Bengal?",
+            "options": ["Durga Puja", "Diwali", "Eid", "Holi"],
+            "answer": "Durga Puja"
+          },
+          {
+            "question": "Which river flows through West Bengal?",
+            "options": ["Hooghly", "Ganga", "Brahmaputra", "Yamuna"],
+            "answer": "Hooghly"
+          },
+          {
+            "question": "Which hill station is famous in West Bengal?",
+            "options": ["Darjeeling", "Ooty", "Munnar", "Mahabaleshwar"],
+            "answer": "Darjeeling"
+          },
+          {
+            "question": "What is the famous dance form of West Bengal?",
+            "options": ["Bharatanatyam", "Kathak", "Chhau", "Odissi"],
+            "answer": "Chhau"
+          }
+        ]
+      }
+    ]
+  }
+  

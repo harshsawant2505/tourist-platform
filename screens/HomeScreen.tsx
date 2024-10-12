@@ -6,40 +6,39 @@ import firestore from '@react-native-firebase/firestore';
 import 'firebase/compat/app'
 import { collection, addDoc, doc, getDoc, query, where, getDocs } from "firebase/firestore"; 
 import { auth, db } from '../firebase';
+import { fetchDoc } from '../utils/getUser';
 //this is the hom frome harsh final
 
 
 
-const HomeScreen = () => {
+const HomeScreen = ({navigation}:any) => {
 
       const [user, setUser] = useState<any>(null);
 
 
-    const fetchDoc =async () =>{
-      console.log("inside");
+  
 
-      try {
-        const q = query(collection(db, "users"), where("email", "==", auth.currentUser?.email));
-        
-        const querySnapshot = await getDocs(q);
-        querySnapshot.forEach((doc) => {
-         
-          // doc.data() is never undefined for query doc snapshots
-         
-          setUser(doc.data())
-         
-        });
-        console.log("User saved to Database: ", user)
-      } catch (error) {
-          console.log("error")
-      }
+  
+
+  const fetch = async () => {
+    try {
+      const user1 = await fetchDoc();
+    
+      setUser(user1);
+      console.log('My User:', user);
+    } catch (error) {
      
+      console.log('Error fetching user:', error);
     }
- 
-  useEffect(() => {
-    fetchDoc()
-  }, [])
+   
 
+  };
+
+  useEffect(() => {
+   
+    fetch();
+
+  }, []);
 
 
 
@@ -54,8 +53,11 @@ const HomeScreen = () => {
 
      
    
-        <View className='w-full h-10 flex justify-center items-center bg-gray-800'>
-              <Text className='text-white '>{user?.email}</Text>
+        <View className='w-full h-10 flex-row flex space-x-5 justify-center items-center bg-gray-800'>
+              <Text className='text-white '>Email: {user?.email}</Text>
+             
+              <Text className='text-white '>Points: {user?.points}</Text>
+              
         </View>
 
 
@@ -189,13 +191,14 @@ const HomeScreen = () => {
                />
                 <Text className='text-white text-sm font-medium'>SpinTheWheel</Text>
                  </View>
-                 <View className='w-28 h-28 bg-black items-center rounded-md' style={{ backgroundColor: 'rgba(0, 0, 0, 0.43)' }}>
+                 <TouchableOpacity onPress={()=>navigation.navigate('quiz')}  className='w-28 h-28 bg-black items-center rounded-md' style={{ backgroundColor: 'rgba(0, 0, 0, 0.43)' }}>
                  <Image
                   source={require('../assets/quiz.png')}
                   className=" w-20 h-20 opacity-100 "
+                  
                />
                 <Text className='text-white mt-2 text-sm font-medium'>Discovereddd</Text>
-                 </View>
+                 </TouchableOpacity>
                  <View className='w-28 h-28 bg-black items-center rounded-md' style={{ backgroundColor: 'rgba(0, 0, 0, 0.43)' }}>
                  <Image
                   source={require('../assets/quiz.png')}
@@ -225,5 +228,4 @@ const HomeScreen = () => {
 
 
 
- 
 export default HomeScreen

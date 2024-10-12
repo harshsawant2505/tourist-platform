@@ -8,10 +8,12 @@ import HomeScreen from './screens/HomeScreen';
 import SignUpScreen from './screens/SignUpScreen';
 import SignInScreen from './screens/SignInScreen';
 import { useEffect, useState } from 'react';
+import Menu from './screens/Menu';
 
 import { auth } from './firebase';
 import { onAuthStateChanged } from 'firebase/auth';
-import { SafeAreaView } from 'react-native-safe-area-context';
+
+import QuizScreen from './screens/QuizScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -24,15 +26,20 @@ function App() {
     console.log('App.js mounted');
 
     let unsubscribe =  onAuthStateChanged(auth,(user:any) => {
-  
-      if(user){
+      console.log('User:', user);
+    
         setUser(user);
-        if (initializing) setInitializing(false);
-        console.log('User:', user.email);
-      }
-      return unsubscribe;
+        if (initializing) {
+          console.log('User:', user?.email);
+          setInitializing(false);
+        }
+        console.log('User:', user?.email);
+      
+      
     }
+  
     );
+    return unsubscribe;
 }, []);
 
   React.useEffect(() => {
@@ -63,8 +70,10 @@ function App() {
     
 
           <Stack.Screen name="Home" component={HomeScreen} />
+          <Stack.Screen name="quiz" component={QuizScreen} />
           <Stack.Screen name="SignIn" component={SignInScreen} />
           <Stack.Screen name="SignUp" component={SignUpScreen} />
+          <Stack.Screen name="Menu" component={Menu} />
           
           </Stack.Navigator>
 
