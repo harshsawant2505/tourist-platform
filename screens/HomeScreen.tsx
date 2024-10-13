@@ -1,44 +1,188 @@
 import { View, Text, ImageBackground, StyleSheet, Image, Button, TouchableOpacity, ScrollView } from 'react-native'
-import React, { useEffect, useState } from 'react'
+import React, { useCallback, useEffect,  useState } from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import Navbar from '../components/Navbar';
-import firestore from '@react-native-firebase/firestore';
+import firestore, { updateDoc } from '@react-native-firebase/firestore';
 import 'firebase/compat/app'
-import { collection, addDoc, doc, getDoc, query, where, getDocs } from "firebase/firestore"; 
+import { collection, addDoc, doc, getDoc, query, where, getDocs, setDoc } from "firebase/firestore"; 
 import { auth, db } from '../firebase';
 import { fetchDoc } from '../utils/getUser';
-//this is the hom frome harsh final
-
-
+import { useFocusEffect } from '@react-navigation/native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import * as Location from 'expo-location';
+import NetInfo from "@react-native-community/netinfo";
 
 const HomeScreen = ({navigation}:any) => {
+  const [currentState, setCurrentState] = useState<string | null>(null);
 
       const [user, setUser] = useState<any>(null);
 
-
+      const [location, setLocation] = useState(null);
+      const [errorMsg, setErrorMsg] = useState("");
   
-
-  
-
-  const fetch = async () => {
+  const fetchOnline = async()=>{
     try {
+
+      // updateFireStore()
+
       const user1 = await fetchDoc();
-    
+
+     
       setUser(user1);
-      console.log('My User:', user);
+     
+   
     } catch (error) {
      
       console.log('Error fetching user:', error);
     }
+  }
+  
+  const fetchOffline = async() => {
+
+    try {
+      const jsonValue = await AsyncStorage.getItem('user');
+      if (jsonValue != null) {
+        setUser(JSON.parse(jsonValue));
+      }
+    } catch (e) {
+      console.log('Error fetching user:', e);
+    }
+
+  }
+
+  const fetchData = async () => {
+
+    NetInfo.fetch().then(state => {
+      if (!state.isConnected) {
+        console.log("No internet connection");
+        fetchOffline()
+      } else {
+        console.log("Internet connection available");
+        updateFireStore()
+        fetchOnline()
+        
+       
+      }
+    });
+
+
    
 
   };
 
-  useEffect(() => {
+  const getCurrentStateOnline = async (latitude: number, longitude: number) => {
+    try {
+      // Replace with your reverse geocoding API
+      const response = await fetch(`https://nominatim.openstreetmap.org/reverse?lat=${latitude}&lon=${longitude}&format=json`);
+      const data = await response.json();
+    data.state || "Unknown";
+    console.log("State: ", data.address.state)
+    
+   await AsyncStorage.setItem('state', data.address.state);
+    } catch (error) {
+      console.error('Error fetching state from geocoding API:', error);
    
-    fetch();
+    }
+  };
+
+  useEffect(() => {
+    (async () => {
+      
+      let { status } = await Location.requestForegroundPermissionsAsync();
+      if (status !== 'granted') {
+        setErrorMsg('Permission to access location was denied');
+        return;
+      }
+
+      let location:any = await Location.getCurrentPositionAsync({});
+
+      NetInfo.fetch().then(state => {
+        if (!state.isConnected) {
+        
+        } else {
+          getCurrentStateOnline(location.coords.latitude, location.coords.longitude)
+          
+         
+        }
+      });
+  
+      
+      
+      
+      setLocation(location);
+      const storedState = await AsyncStorage.getItem('state');
+      if (storedState) {
+        setCurrentState(storedState);
+      }
+    })();
+    
+
+   
 
   }, []);
+
+  let text = 'Waiting..';
+  if (errorMsg) {
+    text = errorMsg;
+  } else if (location) {
+    text = JSON.stringify(location);
+  }
+
+console.log(text)
+  useFocusEffect(
+    useCallback(() => {
+      // Code to run when the screen is focused (e.g., page is loaded by back button)
+      console.log('Screen is focused');
+      fetchData();
+
+      
+
+      return () => {
+        // Optional: cleanup when the screen is unfocused
+        console.log('Screen is unfocused');
+      };
+    }, [])
+  );
+
+
+  const updateFireStore = async() =>{
+
+
+    try {
+
+      const jsonValue = await AsyncStorage.getItem('user');
+      let data = jsonValue != null ? JSON.parse(jsonValue) : {};
+      const usersCollection = collection(db, "users"); // Reference to the users collection
+      const q = query(usersCollection, where("email", "==",data.email )); // Create a query to find the user by email
+      
+      const querySnapshot = await getDocs(q); // Execute the query
+    
+      if (querySnapshot.empty) {
+        console.log('No user found with this email:', data.email);
+        return;
+      }
+  
+      // Assuming emails are unique, get the first document
+      const userDoc = querySnapshot.docs[0];
+      const userRef:any = doc(db, "users", userDoc.id); // Get a reference to the user's document
+  
+     
+      console.log("in here")
+  
+      await setDoc(userRef, data);
+  
+      console.log("Updated FireStore")
+     
+      
+    } catch (error) {
+        console.log(error)
+    }
+   
+
+    
+    
+ 
+  }
 
 
 
@@ -122,7 +266,7 @@ const HomeScreen = ({navigation}:any) => {
               {/* location */}
               <View className='w-full h-[147px] py-5 px-5 rounded-md ' style={{ backgroundColor: 'rgba(255, 255, 255, 0.80)'}}>
                   <Text className='text-2xl  text-black  font-medium'>
-                  Manali, Himachal Pradesh
+                  Manali, {currentState?currentState:'Loading...'}
                   </Text>
                   <Text className='text-md text-gray-600 py-3 font-medium'>
                   A picturesque hill station nestled in the Himalayas, known for its snow-capped. known for its snow capped.
@@ -176,7 +320,7 @@ const HomeScreen = ({navigation}:any) => {
 
 
           <View className='w-full h-40 mb-10  flex-row '>
-              <ScrollView horizontal className='gap-3 px-1'>
+              <ScrollView horizontal className='gap-1 '>
                  <View className='w-28 h-28 bg-black items-center rounded-md' style={{ backgroundColor: 'rgba(0, 0, 0, 0.43)' }}>
                  <Image
                   source={require('../assets/envelope.png')}
@@ -197,7 +341,7 @@ const HomeScreen = ({navigation}:any) => {
                   className=" w-20 h-20 opacity-100 "
                   
                />
-                <Text className='text-white mt-2 text-sm font-medium'>Discovereddd</Text>
+                <Text className='text-white mt-2 text-sm font-medium'>Discovered</Text>
                  </TouchableOpacity>
                  <View className='w-28 h-28 bg-black items-center rounded-md' style={{ backgroundColor: 'rgba(0, 0, 0, 0.43)' }}>
                  <Image

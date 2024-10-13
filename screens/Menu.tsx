@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, Image, ImageBackground, ScrollView } from 'react-native';
-import { useNavigation } from '@react-navigation/core';
+import { useFocusEffect, useNavigation } from '@react-navigation/core';
 import Navbar from '../components/Navbar';
 import { fetchDoc } from '../utils/getUser';
 import { useState,useEffect } from 'react';
@@ -8,7 +8,8 @@ import { signOut } from 'firebase/auth';
 import { Auth } from 'firebase/auth';
 import { auth } from '../firebase';
 import { SafeAreaView } from 'react-native-safe-area-context';
-
+import NetInfo from "@react-native-community/netinfo";
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 interface UserSchema {
     name: string;
@@ -20,11 +21,73 @@ const Menu = () => {
 
     const [user, setUser] = useState<UserSchema>({ name: '', email: '' });
 
-    useEffect(() => {
-        fetchDoc().then((res) => {
-            setUser(res);
+    const fetchOnline = async()=>{
+        try {
+    
+    
+          const user1:any = await fetchDoc();
+    
+         
+          setUser(user1);
+          console.log('My User:', user);
+        } catch (error) {
+         
+          console.log('Error fetching user:', error);
+        }
+      }
+      
+      const fetchOffline = async() => {
+    
+        try {
+          const jsonValue = await AsyncStorage.getItem('user');
+          if (jsonValue != null) {
+            setUser(JSON.parse(jsonValue));
+          }
+        } catch (e) {
+          console.log('Error fetching user:', e);
+        }
+    
+      }
+    
+      const fetch = async () => {
+    
+        NetInfo.fetch().then(state => {
+          if (!state.isConnected) {
+            console.log("No internet connection");
+            fetchOffline()
+          } else {
+            console.log("Internet connection available");
+            fetchOnline()
+          }
         });
-    }, []);
+       
+       
+    
+      };
+    
+    
+      useEffect(() => {
+        console.log("Navigation UseEffect");
+        fetch();
+    
+       
+    
+      }, [navigation]);
+
+      
+  useFocusEffect(
+    useCallback(() => {
+      // Code to run when the screen is focused (e.g., page is loaded by back button)
+      console.log('Screen is focused');
+      fetch();
+
+      return () => {
+        // Optional: cleanup when the screen is unfocused
+        console.log('Screen is unfocused');
+      };
+    }, [])
+  );
+
 
     const signout = () => {
         console.log('Sign Out');
@@ -38,8 +101,8 @@ const Menu = () => {
       };
     
 
-    const handleRedirect = (screen) => {
-        navigation.navigate(screen); // Pass the desired screen name
+    const handleRedirect = (screen:any) => {
+        navigation.navigate(screen as never); // Pass the desired screen name
     };
 
     
