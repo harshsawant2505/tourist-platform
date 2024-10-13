@@ -11,6 +11,7 @@ import { useFocusEffect } from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import * as Location from 'expo-location';
 import NetInfo from "@react-native-community/netinfo";
+import { fetchAttractions } from '../utils/fetchSpots';
 
 const HomeScreen = ({ navigation }: any) => {
   const [currentState, setCurrentState] = useState<string | null>(null);
@@ -127,6 +128,21 @@ const HomeScreen = ({ navigation }: any) => {
   } else if (location) {
     text = JSON.stringify(location);
   }
+  const [closestAttractions, setClosestAttractions] = useState<any>(null);
+
+  const GetClosestAttractions = async () => {
+    try {
+      const jsonValue = await AsyncStorage.getItem('closestAttractions');
+      if (jsonValue != null) {
+        setClosestAttractions(JSON.parse(jsonValue));
+      }
+    } catch (error) {
+      console.error('Error fetching closest attractions from storage:', error);
+    }
+  
+  }
+
+
 
   console.log(text)
   useFocusEffect(
@@ -134,7 +150,17 @@ const HomeScreen = ({ navigation }: any) => {
       // Code to run when the screen is focused (e.g., page is loaded by back button)
       console.log('Screen is focused');
       fetchData();
+      if(location?.coords?.latitude && location?.coords?.longitude){
+          console.log("Fetching attractions")
+        fetchAttractions(location.coords.latitude, location.coords.longitude)
 
+      }
+
+      GetClosestAttractions()
+
+    
+
+      
 
 
       return () => {
@@ -183,7 +209,7 @@ const HomeScreen = ({ navigation }: any) => {
 
 
   }
-
+  
 
 
   return (
@@ -328,7 +354,7 @@ const HomeScreen = ({ navigation }: any) => {
                   />
                   <Text className='text-white mt-2 text-sm font-medium'>Mystery Map</Text>
                 </View>
-                <TouchableOpacity className='w-28 h-28 bg-black items-center rounded-md' style={{ backgroundColor: 'rgba(0, 0, 0, 0.43)' }} onPress={()=>navigation.navigate('SpinTheWheel', { stateName: currentState })}>
+                <TouchableOpacity  className='w-28 h-28 bg-black items-center rounded-md' style={{ backgroundColor: 'rgba(0, 0, 0, 0.43)' }} onPress={()=>navigation.navigate('SpinTheWheel', { stateName: currentState, closestAttractions: closestAttractions })}>
                   <Image
                     source={require('../assets/wheel.png')}
                     className=" w-20 h-20 opacity-100 mt-2 "

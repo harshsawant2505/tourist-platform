@@ -61,9 +61,9 @@ export default class App extends React.Component {
   constructor(props) {
     super(props);
     const { route } = props; // Destructure route from props
-    const { stateName } = route.params; // Destructure stateName from route.params
+    const { stateName, closestAttractions } = route.params; // Destructure stateName from route.params
     const activityTitles = getActivitiesByState(stateName); // Fetch activities
-
+    console.log("Closest attractions:", closestAttractions); // Log closest attractions
     this._wheelPaths = makeWheel(activityTitles);
     this._angle = new Animated.Value(0);
     this.angle = 0;
