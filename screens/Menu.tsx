@@ -19,6 +19,7 @@ const Menu = () => {
     const navigation = useNavigation();
 
     const [user, setUser] = useState<UserSchema>({ name: '', email: '' });
+    const attractionDataArray:any = [];
 
     const fetchOnline = async()=>{
         try {
@@ -47,8 +48,9 @@ const Menu = () => {
         }
     
       }
-    
-      const fetch = async () => {
+
+   
+      const fetchUserData = async () => {
     
         NetInfo.fetch().then(state => {
           if (!state.isConnected) {
@@ -67,7 +69,7 @@ const Menu = () => {
     
       useEffect(() => {
         console.log("Navigation UseEffect");
-        fetch();
+        fetchUserData();
     
        
     
