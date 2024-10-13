@@ -4,10 +4,10 @@ import {
   View,
   Text as RNText,
   Dimensions,
-  Animated
+  Animated,
+  TouchableOpacity,
 } from 'react-native';
-import activitiesData from '../JSON-files/activitiesDataset.json'; // Importing your JSON file
-import { PanGestureHandler, State } from 'react-native-gesture-handler';
+import activitiesData from '../JSON-files/activitiesDataset.json';
 import Svg, { Path, G, Text } from 'react-native-svg';
 import * as d3Shape from 'd3-shape';
 import color from 'randomcolor';
@@ -15,7 +15,7 @@ import { snap } from '@popmotion/popcorn';
 
 const { width } = Dimensions.get('screen');
 
-const numberOfSegments = 5; // Fixed at 5 based on activities
+const numberOfSegments = 5;
 const wheelSize = width * 0.95;
 const fontSize = 18;
 const oneTurn = 360;
@@ -23,7 +23,6 @@ const angleBySegment = oneTurn / numberOfSegments;
 const angleOffset = angleBySegment / 2;
 const knobFill = color({ hue: 'purple' });
 
-// Fetch activities from props based on state name
 const getActivitiesByState = (stateName) => {
   const stateData = activitiesData[stateName];
   if (stateData && stateData.activities) {
@@ -32,7 +31,6 @@ const getActivitiesByState = (stateName) => {
   return [];
 };
 
-// Updated wheel function
 const makeWheel = (activityTitles) => {
   const data = Array.from({ length: numberOfSegments }).fill(1);
   const arcs = d3Shape.pie()(data);
@@ -51,8 +49,8 @@ const makeWheel = (activityTitles) => {
     return {
       path: instance(arc),
       color: colors[index],
-      title: activityTitles[index] || '',  // Set the activity title here
-      centroid: instance.centroid(arc)
+      title: activityTitles[index] || '',
+      centroid: instance.centroid(arc),
     };
   });
 };
@@ -60,9 +58,9 @@ const makeWheel = (activityTitles) => {
 export default class App extends React.Component {
   constructor(props) {
     super(props);
-    const { route } = props; // Destructure route from props
-    const { stateName } = route.params; // Destructure stateName from route.params
-    const activityTitles = getActivitiesByState(stateName); // Fetch activities
+    const { route } = props;
+    const { stateName } = route.params;
+    const activityTitles = getActivitiesByState(stateName);
 
     this._wheelPaths = makeWheel(activityTitles);
     this._angle = new Animated.Value(0);
@@ -71,7 +69,7 @@ export default class App extends React.Component {
     this.state = {
       enabled: true,
       finished: false,
-      winner: null
+      winner: null,
     };
   }
 
@@ -82,37 +80,42 @@ export default class App extends React.Component {
   }
 
   _getWinnerIndex = () => {
-    const deg = Math.abs(Math.round(this.angle % oneTurn));
-    return Math.floor(deg / angleBySegment);
+    // Normalize the angle to be within 0 to 360 degrees
+    const normalizedAngle = ((this.angle % oneTurn) + oneTurn) % oneTurn;
+    
+    // Calculate the index of the winning segment based on normalized angle
+    // We subtract from numberOfSegments because the wheel spins clockwise
+    const index = (numberOfSegments - 1) - Math.floor(normalizedAngle / angleBySegment);
+    
+    // Ensure the index is within the number of segments
+    return ((index) % numberOfSegments +1)%numberOfSegments;
+    
   };
 
-  _onPan = ({ nativeEvent }) => {
-    if (nativeEvent.state === State.END) {
-      const { velocityY } = nativeEvent;
+  _spinWheel = () => {
+    const velocity = 5000 + Math.random() * 5000;
+    this.setState({ enabled: false, finished: false, winner: null });
 
-      this.setState({ enabled: false });
-
-      Animated.decay(this._angle, {
-        velocity: velocityY / 1000,
-        deceleration: 0.999,
-        useNativeDriver: true
+    Animated.decay(this._angle, {
+      velocity: velocity / 1000,
+      deceleration: 0.999,
+      useNativeDriver: true,
+    }).start(() => {
+      this._angle.setValue(this.angle % oneTurn);
+      const snapTo = snap(oneTurn / numberOfSegments);
+      Animated.timing(this._angle, {
+        toValue: snapTo(this.angle),
+        duration: 300,
+        useNativeDriver: true,
       }).start(() => {
-        this._angle.setValue(this.angle % oneTurn);
-        const snapTo = snap(oneTurn / numberOfSegments);
-        Animated.timing(this._angle, {
-          toValue: snapTo(this.angle),
-          duration: 300,
-          useNativeDriver: true
-        }).start(() => {
-          const winnerIndex = this._getWinnerIndex();
-          this.setState({
-            enabled: true,
-            finished: true,
-            winner: this._wheelPaths[winnerIndex].title // Set winner to the title
-          });
+        const winnerIndex = this._getWinnerIndex();
+        this.setState({
+          enabled: true,
+          finished: true,
+          winner: this._wheelPaths[winnerIndex].title,
         });
       });
-    }
+    });
   };
 
   _resetWheel = () => {
@@ -122,16 +125,19 @@ export default class App extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text style={styles.title}>Activity Suggester</Text>{/* Added Title */}
-        <PanGestureHandler
-          onHandlerStateChange={this._onPan}
-          enabled={this.state.enabled}
+        <RNText style={styles.title}>Activity Suggester</RNText>
+        <View style={styles.wheelContainer}>
+          {this._renderSvgWheel()}
+          {this.state.finished && this._renderWinner()}
+        </View>
+
+        <TouchableOpacity
+          style={styles.spinButton}
+          onPress={this._spinWheel}
+          disabled={!this.state.enabled}
         >
-          <View style={styles.wheelContainer}>
-            {this._renderSvgWheel()}
-            {this.state.finished && this._renderWinner()}
-          </View>
-        </PanGestureHandler>
+          <RNText style={styles.spinButtonText}>Spin the Wheel</RNText>
+        </TouchableOpacity>
       </View>
     );
   }
@@ -157,10 +163,10 @@ export default class App extends React.Component {
             {
               rotate: YOLO.interpolate({
                 inputRange: [-1, -0.5, -0.0001, 0.0001, 0.5, 1],
-                outputRange: ['0deg', '0deg', '35deg', '-35deg', '0deg', '0deg']
-              })
-            }
-          ]
+                outputRange: ['0deg', '0deg', '35deg', '-35deg', '0deg', '0deg'],
+              }),
+            },
+          ],
         }}
       >
         <Svg
@@ -181,7 +187,7 @@ export default class App extends React.Component {
   _renderWinner = () => {
     return (
       <RNText style={styles.winnerText} onPress={this._resetWheel}>
-        The activity is: {this.state.winner} 
+        The activity is: {this.state.winner}
       </RNText>
     );
   };
@@ -198,10 +204,10 @@ export default class App extends React.Component {
               {
                 rotate: this._angle.interpolate({
                   inputRange: [-oneTurn, 0, oneTurn],
-                  outputRange: [`-${oneTurn}deg`, '0deg', `${oneTurn}deg`]
-                })
-              }
-            ]
+                  outputRange: [`-${oneTurn}deg`, '0deg', `${oneTurn}deg`],
+                }),
+              },
+            ],
           }}
         >
           <Svg
@@ -228,7 +234,7 @@ export default class App extends React.Component {
                         textAnchor="middle"
                         fontSize={fontSize}
                       >
-                        {arc.title} {/* Activity title from JSON */}
+                        {arc.title}
                       </Text>
                     </G>
                   </G>
@@ -250,9 +256,9 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   title: {
-    fontSize: 24, // Increased font size for better visibility
+    fontSize: 24,
     fontWeight: 'bold',
-    marginBottom: 20, // Added margin for spacing
+    marginBottom: 20,
     color: 'black',
   },
   winnerText: {
@@ -267,5 +273,21 @@ const styles = StyleSheet.create({
   wheelContainer: {
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  spinButton: {
+    backgroundColor: 'purple',
+    padding: 10,
+    width: 200,
+    alignItems: 'center',
+    justifyContent: 'center',
+    position: 'absolute',
+    bottom: 50,
+    borderRadius: 10,
+    marginTop: 20,
+  },
+  spinButtonText: {
+    color: 'white',
+    fontWeight: 'bold',
+    fontSize: 18,
   },
 });
