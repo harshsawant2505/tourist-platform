@@ -20,6 +20,7 @@
     "dotenv": "^16.4.5",
     "expo": "~51.0.28",
     "expo-blur": "~13.0.2",
+    "expo-location": "^17.0.1",
     "expo-status-bar": "~1.12.1",
     "firebase": "^10.14.1",
     "nativewind": "^2.0.11",

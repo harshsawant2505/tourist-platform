@@ -31,7 +31,7 @@ const MysteryMap = () => {
         </View>
 
        
-        <View style={{ position: 'absolute', bottom: 70, left: 0, right: 0, zIndex: 1 }}>
+        <View style={{ position: 'absolute', bottom:70 , left: 0, right: 0,zIndex:1}}>
           <Navbar />
         </View>
       </ImageBackground>

@@ -62,7 +62,7 @@ const Menu = () => {
                         <View style={styles.menuContainer}>
                             {[
                                 { title: "My Profile", screen: 'Home' },
-                                { title: "Leaderboard", screen: '' },
+                                { title: "Leaderboard", screen: 'leaderboard' },
                                 { title: "Manage Offline Maps", screen: 'Home' },
                                 { title: "Manage Notifications", screen: 'Home' },
                                 { title: "SOS", screen: 'Home' },

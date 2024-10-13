@@ -1,7 +1,7 @@
 // In App.js in a new project
 
 import * as React from 'react';
-import { View, Text, Image } from 'react-native';
+import { View, Text, Image, Settings } from 'react-native';
 import { NavigationContainer, useNavigation } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import HomeScreen from './screens/HomeScreen';
@@ -14,6 +14,8 @@ import { auth } from './firebase';
 import { onAuthStateChanged } from 'firebase/auth';
 
 import QuizScreen from './screens/QuizScreen';
+import LeaderboardScreen from './screens/LeaderboardScreen';
+import SettingsScreen from './screens/SettingsScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -63,12 +65,13 @@ function App() {
       {
         user?(
           <Stack.Navigator
-          initialRouteName="Home"
+          initialRouteName="settings"//later change intial route name
+
           screenOptions={{
           headerShown: false
           }}>
-    
-
+          <Stack.Screen name="settings" component={SettingsScreen} />
+          <Stack.Screen name="leaderboard" component={LeaderboardScreen} />
           <Stack.Screen name="Home" component={HomeScreen} />
           <Stack.Screen name="quiz" component={QuizScreen} />
           <Stack.Screen name="SignIn" component={SignInScreen} />
