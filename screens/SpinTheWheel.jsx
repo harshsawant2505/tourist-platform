@@ -125,7 +125,7 @@ export default class App extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <RNText style={styles.title}>Activity Suggester</RNText>
+  
         <View style={styles.wheelContainer}>
           {this._renderSvgWheel()}
           {this.state.finished && this._renderWinner()}
@@ -195,6 +195,7 @@ export default class App extends React.Component {
   _renderSvgWheel = () => {
     return (
       <View style={styles.container}>
+      <RNText style={styles.heading}>Activity Picker </RNText>
         {this._renderKnob()}
         <Animated.View
           style={{
@@ -264,7 +265,7 @@ const styles = StyleSheet.create({
   winnerText: {
     fontSize: 20,
     position: 'absolute',
-    bottom: 50,
+    bottom: 100,
     zIndex: 2,
     color: 'black',
     textDecorationLine: 'underline',
@@ -273,6 +274,7 @@ const styles = StyleSheet.create({
   wheelContainer: {
     alignItems: 'center',
     justifyContent: 'center',
+    bottom: 100,
   },
   spinButton: {
     backgroundColor: 'purple',
@@ -281,7 +283,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     position: 'absolute',
-    bottom: 50,
+    bottom: 100,
     borderRadius: 10,
     marginTop: 20,
   },
@@ -289,5 +291,11 @@ const styles = StyleSheet.create({
     color: 'white',
     fontWeight: 'bold',
     fontSize: 18,
+  },
+  heading: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    marginBottom: 0 ,
+    color: 'black',
   },
 });
