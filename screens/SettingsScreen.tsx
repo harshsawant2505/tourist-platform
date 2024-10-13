@@ -23,7 +23,7 @@ export default function Example() {
     <SafeAreaView style={{ flex: 1, backgroundColor: '#f8f8f8' }}>
          <ImageBackground
         source={require('../assets/mountainBack.jpg')}
-        style={{ flex: 1 ,height:800,width:450}}
+        style={{ flex: 1 ,height:900,width:450,padding:20,}}
         
       >
       <View style={styles.header}>
@@ -68,15 +68,15 @@ export default function Example() {
               style={styles.profile}>
               <Image
                 alt=""
-                source={{
-                  uri: 'https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=facearea&facepad=2.5&w=256&h=256&q=80',
-                }}
+                source={
+                    require('../assets/adventurer.png')
+                }
                 style={styles.profileAvatar} />
 
               <View style={styles.profileBody}>
-                <Text style={styles.profileName}>John Doe</Text>
+                <Text style={styles.profileName}>shaun</Text>
 
-                <Text style={styles.profileHandle}>john@example.com</Text>
+                <Text style={styles.profileHandle}>shaun.com</Text>
               </View>
 
               <FeatherIcon
@@ -257,9 +257,11 @@ export default function Example() {
           </View>
         </View>
 
-        <Text style={styles.contentFooter}>App Version 2.24 #50491</Text>
+        
       </ScrollView>
+      <View style={{bottom:-20,left:-20}}>
       <Navbar/>
+      </View>
       </ImageBackground>
     </SafeAreaView>
   );
@@ -302,7 +304,7 @@ const styles = StyleSheet.create({
   },
   /** Section */
   section: {
-    paddingVertical: 12,
+    paddingVertical: 22,
   },
   sectionTitle: {
     margin: 8,
@@ -310,7 +312,7 @@ const styles = StyleSheet.create({
     fontSize: 13,
     letterSpacing: 0.33,
     fontWeight: '500',
-    color: '#a69f9f',
+    color: 'black',
     textTransform: 'uppercase',
   },
   sectionBody: {
@@ -326,12 +328,14 @@ const styles = StyleSheet.create({
   },
   /** Profile */
   profile: {
+    
     padding: 12,
     backgroundColor: '#fff',
     borderRadius: 12,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'flex-start',
+    left:-20,
   },
   profileAvatar: {
     width: 60,
@@ -361,12 +365,15 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'flex-start',
     paddingRight: 12,
+    
   },
   rowWrapper: {
     paddingLeft: 16,
     backgroundColor: '#fff',
     borderTopWidth: 1,
     borderColor: '#f0f0f0',
+    left:-20,
+    
   },
   rowFirst: {
     borderTopLeftRadius: 12,
