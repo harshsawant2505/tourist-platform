@@ -9,18 +9,20 @@ import SignUpScreen from './screens/SignUpScreen';
 import SignInScreen from './screens/SignInScreen';
 import { useEffect, useState } from 'react';
 import Menu from './screens/Menu';
+import SpinTheWheel from './screens/SpinTheWheel';
 
 import { auth } from './firebase';
 import { onAuthStateChanged } from 'firebase/auth';
 
 import QuizScreen from './screens/QuizScreen';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
 
 const Stack = createNativeStackNavigator();
 
 
 
 function App() {
- const [user, setUser] = React.useState(null);
+  const [user, setUser] = React.useState(null);
  const [initializing, setInitializing] = useState(true);
   useEffect(() => {
     console.log('App.js mounted');
@@ -53,12 +55,13 @@ function App() {
         <Image
             source={require('./assets/splash.png')}
             style={{ width:340, height:340, opacity: 1 }}
-        />
+            />
       </View>
     ) // or a loading component
   }
 
   return (
+      <GestureHandlerRootView>
     <NavigationContainer>
       {
         user?(
@@ -74,6 +77,7 @@ function App() {
           <Stack.Screen name="SignIn" component={SignInScreen} />
           <Stack.Screen name="SignUp" component={SignUpScreen} />
           <Stack.Screen name="Menu" component={Menu} />
+          <Stack.Screen name="SpinTheWheel" component={SpinTheWheel} />
           
           </Stack.Navigator>
 
@@ -91,6 +95,7 @@ function App() {
       }
     
     </NavigationContainer>
+    </GestureHandlerRootView>
   );
 }
 
