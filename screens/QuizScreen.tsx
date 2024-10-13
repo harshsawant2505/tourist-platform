@@ -78,7 +78,7 @@ const QuizScreen: React.FC = ({navigation}:any) => {
           }
           if(user?.quiz?.answered){
               console.log("User has answered the quiz");
-              setScore(user.quiz.score);
+              setScore(user.quiz?.score);
               setPoints(user?.points);
               setOver(true);
               setInitializing(false);

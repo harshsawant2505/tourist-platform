@@ -38,72 +38,55 @@ async function calculateRoadDistance(startLat:any, startLon:any, endLat:any, end
 }
 
 
-export const fetchAttractions = (latitude:any, longitude:any) =>{
+export const fetchAttractions = async (latitude: any, longitude: any) => {
 
+  console.log("lat: ", latitude, "lon: ", longitude);
+  try {
+    const attractions = await fetchTouristAttractions(latitude, longitude);
+    const uniqueAttractions = new Set();
 
-fetchTouristAttractions(latitude, longitude).then(async attractions => {
-  // Use a Set to track unique attraction IDs
-  const uniqueAttractions = new Set();
-  
-  // Array to hold the tourist attractions with distance and time
- 
+    for (let attraction of attractions) {
+      const attractionId = attraction.id;
 
-  for (let attraction of attractions) {
-    const attractionId = attraction.id;
-    
-    // Check if the attraction is already processed (avoids duplicates)
-    if (!uniqueAttractions.has(attractionId)) {
-      uniqueAttractions.add(attractionId);  // Mark this attraction as processed
+      if (!uniqueAttractions.has(attractionId)) {
+        uniqueAttractions.add(attractionId);
 
-      if (attraction.lat && attraction.lon) {
-        const name = attraction.tags?.name || 'Unnamed';  // Get the name or fallback to 'Unnamed'
+        if (attraction.lat && attraction.lon) {
+          const name = attraction.tags?.name || 'Unnamed';
 
-        // Calculate road distance to the tourist attraction
-        const distanceData = await calculateRoadDistance(latitude, longitude, attraction.lat, attraction.lon);
-        const distanceKm = (distanceData.distance / 1000).toFixed(2); // Convert distance to kilometers
-        const durationMinutes = Math.round(distanceData.duration / 60); // Convert duration to minutes
+          const distanceData = await calculateRoadDistance(latitude, longitude, attraction.lat, attraction.lon);
+          const distanceKm = (distanceData.distance / 1000).toFixed(2);
+          const durationMinutes = Math.round(distanceData.duration / 60);
 
-        // Add the attraction data to the array
-        attractionDataArray.push({
-          name: name,
-          lat: attraction.lat,
-          lon: attraction.lon,
-          distance: distanceKm, // Store as number for sorting
-          time: durationMinutes // Store as number for sorting
-        });
+          attractionDataArray.push({
+            name: name,
+            lat: attraction.lat,
+            lon: attraction.lon,
+            distance: distanceKm,
+            time: durationMinutes
+          });
+        }
+      }
+      if (attractionDataArray.length >= 10) {
+        break;
       }
     }
-    if (attractionDataArray.length >= 10) {
-      break;
+
+    attractionDataArray.sort((a: any, b: any) => a.distance - b.distance);
+
+    try {
+      await AsyncStorage.setItem('closestAttractions', JSON.stringify(attractionDataArray));
+      console.log('Closest attractions saved to storage');
+    } catch (error) {
+      console.error('Error saving closest attractions to storage:', error);
     }
+
+    return attractionDataArray;
+  } catch (error) {
+    console.error('Error:', error);
+    throw error;
   }
-
- 
-
-  // Sort attractions by distance
-  attractionDataArray.sort((a:any, b:any) => a.distance - b.distance);
-
-  // Get the five closest attractions
-  const closestAttractions = attractionDataArray;
-try {
-    await AsyncStorage.setItem('closestAttractions', JSON.stringify(closestAttractions));
-    console.log('Closest attractions saved to storage');
-} catch (error) {
-    console.error('Error saving closest attractions to storage:', error);
-}
-  // Log the five closest tourist attractions
-  console.log(closestAttractions.map((attraction:any) => ({
-    name: attraction.name,
-    lat: attraction.lat,
-    lon: attraction.lon,
-    distance: `${attraction.distance} km`,
-    time: `${attraction.time} minutes`
-  })));
-  
-}).catch(error => {
-  console.error('Error:', error);
-});
-}
+};
 
 
 

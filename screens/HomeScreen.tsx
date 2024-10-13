@@ -1,11 +1,8 @@
-import { View, Text, ImageBackground, StyleSheet, Image, Button, TouchableOpacity, ScrollView } from 'react-native'
-import React, { useCallback, useEffect, useState } from 'react'
+import { View, Text, ImageBackground, StyleSheet, Image, TouchableOpacity, ScrollView } from 'react-native'
+import React, { useCallback, useState } from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import Navbar from '../components/Navbar';
-import firestore, { updateDoc } from '@react-native-firebase/firestore';
-import 'firebase/compat/app'
-import { collection, addDoc, doc, getDoc, query, where, getDocs, setDoc } from "firebase/firestore";
-import { auth, db } from '../firebase';
+import firestore from '@react-native-firebase/firestore';
 import { fetchDoc } from '../utils/getUser';
 import { useFocusEffect } from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -15,202 +12,108 @@ import { fetchAttractions } from '../utils/fetchSpots';
 
 const HomeScreen = ({ navigation }: any) => {
   const [currentState, setCurrentState] = useState<string | null>(null);
-
   const [user, setUser] = useState<any>(null);
+  const [location, setLocation] = useState<any>(null);
+  const [closestAttractions, setClosestAttractions] = useState<any>(null);
+  const [loading, setLoading] = useState(true); // Loading state
 
-  const [location, setLocation] = useState(null);
-  const [errorMsg, setErrorMsg] = useState("");
-
-  const fetchOnline = async () => {
-    try {
-
-      // updateFireStore()
-
-      const user1 = await fetchDoc();
-
-
-      setUser(user1);
-
-
-    } catch (error) {
-
-      console.log('Error fetching user:', error);
-    }
-  }
-
-  const fetchOffline = async () => {
-
+  // Step 1: Fetch data from AsyncStorage first
+  const fetchOfflineData = async () => {
     try {
       const jsonValue = await AsyncStorage.getItem('user');
-      if (jsonValue != null) {
-        setUser(JSON.parse(jsonValue));
+      if (jsonValue) {
+        setUser(JSON.parse(jsonValue)); // Set user data from AsyncStorage
       }
-    } catch (e) {
-      console.log('Error fetching user:', e);
-    }
-
-  }
-
-  const fetchData = async () => {
-
-    NetInfo.fetch().then(state => {
-      if (!state.isConnected) {
-        console.log("No internet connection");
-        fetchOffline()
-      } else {
-        console.log("Internet connection available");
-        updateFireStore()
-        fetchOnline()
-
-
-      }
-    });
-
-
-
-
-  };
-
-  const getCurrentStateOnline = async (latitude: number, longitude: number) => {
-    try {
-      // Replace with your reverse geocoding API
-      const response = await fetch(`https://nominatim.openstreetmap.org/reverse?lat=${latitude}&lon=${longitude}&format=json`);
-      const data = await response.json();
-      data.state || "Unknown";
-      console.log("State: ", data.address.state)
-
-      await AsyncStorage.setItem('state', data.address.state);
-    } catch (error) {
-      console.error('Error fetching state from geocoding API:', error);
-
-    }
-  };
-
-  useEffect(() => {
-    (async () => {
-
-      let { status } = await Location.requestForegroundPermissionsAsync();
-      if (status !== 'granted') {
-        setErrorMsg('Permission to access location was denied');
-        return;
-      }
-
-      let location: any = await Location.getCurrentPositionAsync({});
-
-      NetInfo.fetch().then(state => {
-        if (!state.isConnected) {
-
-        } else {
-          getCurrentStateOnline(location.coords.latitude, location.coords.longitude)
-
-
-        }
-      });
-
-
-
-
-      setLocation(location);
       const storedState = await AsyncStorage.getItem('state');
       if (storedState) {
-        setCurrentState(storedState);
+        setCurrentState(storedState); // Set state (e.g., location) from AsyncStorage
       }
-    })();
-
-
-
-
-  }, []);
-
-  let text = 'Waiting..';
-  if (errorMsg) {
-    text = errorMsg;
-  } else if (location) {
-    text = JSON.stringify(location);
-  }
-  const [closestAttractions, setClosestAttractions] = useState<any>(null);
-
-  const GetClosestAttractions = async () => {
-    try {
-      const jsonValue = await AsyncStorage.getItem('closestAttractions');
-      if (jsonValue != null) {
-        setClosestAttractions(JSON.parse(jsonValue));
+      const closestAttractionsValue = await AsyncStorage.getItem('closestAttractions');
+      if (closestAttractionsValue) {
+        setClosestAttractions(JSON.parse(closestAttractionsValue)); // Load attractions from AsyncStorage
       }
     } catch (error) {
-      console.error('Error fetching closest attractions from storage:', error);
+      console.log('Error fetching offline data:', error);
     }
-  
-  }
+  };
 
-
-
-  console.log(text)
-  useFocusEffect(
-    useCallback(() => {
-      // Code to run when the screen is focused (e.g., page is loaded by back button)
-      console.log('Screen is focused');
-      fetchData();
-      if(location?.coords?.latitude && location?.coords?.longitude){
-          console.log("Fetching attractions")
-        fetchAttractions(location.coords.latitude, location.coords.longitude)
-
+  // Step 2: Fetch updated data online if internet is available
+  const fetchOnlineData = async () => {
+    try {
+      const userData = await fetchDoc(); // Fetch user data from Firestore
+      if (userData) {
+        setUser(userData);
+        await AsyncStorage.setItem('user', JSON.stringify(userData)); // Update AsyncStorage with new user data
       }
 
-      GetClosestAttractions()
+      const locationData = await getLATLONG(); // Fetch location data (e.g., state)
+      if (locationData?.state) {
+        setCurrentState(locationData.state);
+        await AsyncStorage.setItem('state', locationData.state); // Update AsyncStorage with new state
+      }
 
-    
-
+      // Fetch and update closest attractions
+      const attractionsData = await fetchAttractions(location?.coords.latitude, location?.coords.longitude);
+      setClosestAttractions(attractionsData);
+      await AsyncStorage.setItem('closestAttractions', JSON.stringify(attractionsData));
       
+    } catch (error) {
+      console.error('Error fetching online data:', error);
+    } finally {
+      setLoading(false); // Hide loader after fetching
+    }
+  };
 
+  // Step 3: Check internet connection and update if online
+  const fetchData = async () => {
+    await fetchOfflineData(); // Load offline data first
 
-      return () => {
-        // Optional: cleanup when the screen is unfocused
-        console.log('Screen is unfocused');
-      };
+    NetInfo.fetch().then(state => {
+      if (state.isConnected) {
+        console.log("Internet connection available, fetching online data");
+        fetchOnlineData(); // Fetch online data if internet is available
+      } else {
+        console.log("No internet connection, using offline data");
+        setLoading(false); // If offline, stop loading after fetching offline data
+      }
+    });
+  };
+
+  const getLATLONG = async () => {
+    let { status } = await Location.requestForegroundPermissionsAsync();
+    if (status !== 'granted') {
+      console.error('Permission to access location was denied');
+      return;
+    }
+
+    let locationData: any = await Location.getCurrentPositionAsync({});
+    setLocation(locationData);
+
+    try {
+      const response = await fetch(
+        `https://nominatim.openstreetmap.org/reverse?lat=${locationData.coords.latitude}&lon=${locationData.coords.longitude}&format=json`
+      );
+      const data = await response.json();
+      const state = data.address.state || 'Unknown';
+
+      console.log("State: ", state);
+      await AsyncStorage.setItem('state', state);
+
+      return { state };
+    } catch (error) {
+      console.error('Error fetching state from geocoding API:', error);
+    }
+  };
+
+  useFocusEffect(
+    useCallback(() => {
+      fetchData(); // Call fetch logic when screen is focused
     }, [])
   );
 
-
-  const updateFireStore = async () => {
-
-
-    try {
-
-      const jsonValue = await AsyncStorage.getItem('user');
-      let data = jsonValue != null ? JSON.parse(jsonValue) : {};
-      const usersCollection = collection(db, "users"); // Reference to the users collection
-      const q = query(usersCollection, where("email", "==", data.email)); // Create a query to find the user by email
-
-      const querySnapshot = await getDocs(q); // Execute the query
-
-      if (querySnapshot.empty) {
-        console.log('No user found with this email:', data.email);
-        return;
-      }
-
-      // Assuming emails are unique, get the first document
-      const userDoc = querySnapshot.docs[0];
-      const userRef: any = doc(db, "users", userDoc.id); // Get a reference to the user's document
-
-
-      console.log("in here")
-
-      await setDoc(userRef, data);
-
-      console.log("Updated FireStore")
-
-
-    } catch (error) {
-      console.log(error)
-    }
-
-
-
-
-
-  }
-  
-
+  // if (loading) {
+  //   return <Text>Loading...</Text>; // Display a loading state
+  // }
 
   return (
 

@@ -80,7 +80,7 @@ const Menu = () => {
     useCallback(() => {
       // Code to run when the screen is focused (e.g., page is loaded by back button)
       console.log('Screen is focused');
-      fetch();
+      fetchUserData();
 
       return () => {
         // Optional: cleanup when the screen is unfocused
