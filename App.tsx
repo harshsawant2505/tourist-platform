@@ -16,6 +16,7 @@ import { onAuthStateChanged } from 'firebase/auth';
 import QuizScreen from './screens/QuizScreen';
 import LeaderboardScreen from './screens/LeaderboardScreen';
 import SettingsScreen from './screens/SettingsScreen';
+import SOSScreen from './screens/SosScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -65,11 +66,12 @@ function App() {
       {
         user?(
           <Stack.Navigator
-          initialRouteName="settings"//later change intial route name
+          initialRouteName="Menu"//later change intial route name
 
           screenOptions={{
           headerShown: false
           }}>
+           <Stack.Screen name="SOS" component={SOSScreen} />  
           <Stack.Screen name="settings" component={SettingsScreen} />
           <Stack.Screen name="leaderboard" component={LeaderboardScreen} />
           <Stack.Screen name="Home" component={HomeScreen} />

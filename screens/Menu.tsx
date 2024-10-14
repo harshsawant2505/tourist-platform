@@ -10,6 +10,8 @@ import { auth } from '../firebase';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import NetInfo from "@react-native-community/netinfo";
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import Sos from '../components/Sos';
+
 
 interface UserSchema {
     name: string;
@@ -128,11 +130,11 @@ const Menu = () => {
                                 { title: "Leaderboard", screen: 'leaderboard' },
                                 { title: "Manage Offline Maps", screen: 'Home' },
                                 { title: "Manage Notifications", screen: 'Home' },
-                                { title: "SOS", screen: 'Home' },
+                                { title: "SOS", screen:'SOS' },
                                 { title: "Calendar", screen: 'Home' },
                                 { title: "Need Help?", screen: 'Home' },
-                                { title: "Settings", screen: 'Home' },
-                                { title: "More", screen: 'Home' },
+                                { title: "Settings", screen: 'settings' },
+                                
                             ].map((item, index) => (
                                 <View key={index} style={styles.menuItemContainer}>
                                     <TouchableOpacity onPress={() => handleRedirect(item.screen)}>
@@ -145,6 +147,7 @@ const Menu = () => {
                             <TouchableOpacity onPress={() => signout()}>
                                 <Text style={styles.logout} >Logout</Text>
                             </TouchableOpacity>
+                            
                         </View>
 
                     </ScrollView>
