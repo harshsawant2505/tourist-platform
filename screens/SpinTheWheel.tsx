@@ -249,19 +249,24 @@ const SpinningWheel = ({ route }:any) => {
             <G y={width / 2} x={width / 2}>
               {wheelPaths.map((arc, i) => {
                 const [x, y] = arc.centroid;
+                
                 return (
                   <G key={`arc-${i}`}>
                     <Path d={arc.path as any} fill={arc.color} />
                     <G
                       rotation={(i * oneTurn) / numberOfSegments}
                       origin={`${x}, ${y}`}
+                      
                     >
                       <Text
-                        x={x}
-                        y={y - 30}
+                        x={x}  // Adjust x position to move text left
+                        y={y}  // Adjust y position for better alignment
+                        
                         fill="white"
                         textAnchor="middle"
                         fontSize={fontSize}
+                        transform={`rotate(110 ${x},${y})`} // Rotate text 90 degrees
+                        
                       >
                         {arc.title}
                       </Text>
@@ -275,6 +280,8 @@ const SpinningWheel = ({ route }:any) => {
       </View>
     );
   }, [angle, renderKnob, wheelPaths]);
+  
+  
 
   if (loading) {
     return (
