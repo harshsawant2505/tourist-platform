@@ -7,30 +7,29 @@ import color from 'randomcolor';
 import { snap } from '@popmotion/popcorn';
 import { useFocusEffect } from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import SpinCard from '../components/SpinCard'; // Adjust the path accordingly
+
 
 const { width } = Dimensions.get('screen');
 import * as Location from 'expo-location';
 import { fetchAttractions } from '../utils/fetchSpots';
 
-// my code
-
-const numberOfSegments = 10;
 const wheelSize = width * 0.95;
 const fontSize = 18;
 const oneTurn = 360;
-const angleBySegment = oneTurn / numberOfSegments;
-const angleOffset = angleBySegment / 2;
+const angleOffset = oneTurn / 2 / 2;
 const knobFill = color({ hue: 'purple' });
 
-const makeWheel = (activityTitles:any) => {
-  const data:any = Array.from({ length: numberOfSegments }).fill(1);
+// Utility function to generate the wheel paths
+const makeWheel = (activityTitles: any, numberOfSegments: number) => {
+  const data: any = Array.from({ length: numberOfSegments }).fill(1);
   const arcs = d3Shape.pie()(data);
   const colors = color({
     luminosity: 'dark',
-    count: numberOfSegments
+    count: numberOfSegments,
   });
 
-  return arcs.map((arc:any, index) => {
+  return arcs.map((arc: any, index) => {
     const instance = d3Shape
       .arc()
       .padAngle(0.01)
@@ -46,33 +45,37 @@ const makeWheel = (activityTitles:any) => {
   });
 };
 
-const SpinningWheel = ({ route }:any) => {
+const SpinningWheel = ({ route }: any) => {
   const { stateName } = route.params;
 
   const [closestAttractions, setClosestAttractions] = useState([]);
-  const [loading, setLoading] = useState(true);  // Loading state
+  const [loading, setLoading] = useState(true); // Loading state
   const [location, setLocation] = useState<any>(null);
   const [isConnected, setIsConnected] = useState(null); // Network connectivity state
+  const [showCard, setShowCard] = useState(false);
+
+
+  // Get number of segments based on number of attractions
+  const numberOfSegments = closestAttractions.length;
+  const angleBySegment = numberOfSegments ? oneTurn / numberOfSegments : 0;
 
   const GetClosestAttractions = async () => {
     try {
       const jsonValue = await AsyncStorage.getItem('closestAttractions');
       if (jsonValue != null) {
         setClosestAttractions(JSON.parse(jsonValue));
-        setLoading(false);  // Stop loading once data is fetched
+        setLoading(false); // Stop loading once data is fetched
       }
     } catch (error) {
       console.error('Error fetching closest attractions from storage:', error);
-      setLoading(false);  // Stop loading in case of an error
+      setLoading(false); // Stop loading in case of an error
     }
   };
 
-  const SaveAttractionsToStorage = async (data:any) => {
-    console.log("Data: ", data)
+  const SaveAttractionsToStorage = async (data: any) => {
     try {
       const jsonValue = JSON.stringify(data);
       await AsyncStorage.setItem('closestAttractions', jsonValue);
-      
     } catch (error) {
       console.error('Error saving closest attractions to storage:', error);
     }
@@ -83,7 +86,7 @@ const SpinningWheel = ({ route }:any) => {
     if (status !== 'granted') {
       return;
     }
-    let location:any = await Location.getCurrentPositionAsync({});
+    let location: any = await Location.getCurrentPositionAsync({});
     setLocation(location);
   };
 
@@ -94,23 +97,22 @@ const SpinningWheel = ({ route }:any) => {
     } else if (location?.coords?.latitude && location?.coords?.longitude) {
       try {
         const attractions = await fetchAttractions(location.coords.latitude, location.coords.longitude);
-
-        setClosestAttractions(attractions);  // Set new attractions data
-        SaveAttractionsToStorage(attractions);  // Save new data to AsyncStorage
+        setClosestAttractions(attractions); // Set new attractions data
+        SaveAttractionsToStorage(attractions); // Save new data to AsyncStorage
         setLoading(false);
       } catch (error) {
         console.error('Error fetching attractions:', error);
-        setLoading(false);  // Stop loading in case of an error
+        setLoading(false); // Stop loading in case of an errorclosest
       }
     } else {
-      console.log("Location not available, cannot fetch attractions.");
+      console.log('Location not available, cannot fetch attractions.');
     }
   };
 
   useFocusEffect(
     useCallback(() => {
       const checkConnectionAndFetchData = async () => {
-        const state:any = await NetInfo.fetch();
+        const state: any = await NetInfo.fetch();
         setIsConnected(state.isConnected);
 
         if (!location) {
@@ -125,14 +127,17 @@ const SpinningWheel = ({ route }:any) => {
       return () => {
         console.log('Screen is unfocused');
       };
-    }, [location, isConnected])  // Dependency array
+    }, [location, isConnected]) // Dependency array
   );
 
-  const activityTitles = closestAttractions.map((attraction:any) => attraction.name);
-  const wheelPaths = makeWheel(activityTitles);
+  const activityTitles = closestAttractions.map((attraction: any) => attraction.name);
+  const activityLon = closestAttractions.map((attraction: any) => attraction.lon)
+  const activityLat = closestAttractions.map((attraction: any) => attraction.lat)
+  const wheelPaths = makeWheel(activityTitles, numberOfSegments);
 
   const [enabled, setEnabled] = useState(true);
   const [finished, setFinished] = useState(false);
+  const [selected, setSelected] = useState<any>(["90", "90"])
   const [winner, setWinner] = useState(null);
   const angle = useRef(new Animated.Value(0)).current;
   const currentAngle = useRef(0);
@@ -149,9 +154,9 @@ const SpinningWheel = ({ route }:any) => {
 
   const getWinnerIndex = useCallback(() => {
     const normalizedAngle = ((currentAngle.current % oneTurn) + oneTurn) % oneTurn;
-    const index = (numberOfSegments - 1) - Math.floor(normalizedAngle / angleBySegment);
-    return ((index) % numberOfSegments + 1) % numberOfSegments;
-  }, []);
+    const index = numberOfSegments - 1 - Math.floor(normalizedAngle / angleBySegment);
+    return ((index) % numberOfSegments + 2) % numberOfSegments;
+  }, [numberOfSegments, angleBySegment]);
 
   const spinWheel = useCallback(() => {
     const velocity = 5000 + Math.random() * 5000;
@@ -173,11 +178,16 @@ const SpinningWheel = ({ route }:any) => {
       }).start(() => {
         const winnerIndex = getWinnerIndex();
         setWinner(wheelPaths[winnerIndex].title);
+        console.log(winnerIndex);
+        console.log("Winner is :" + closestAttractions[winnerIndex]);
+        setSelected(closestAttractions[winnerIndex])
+        setShowCard(true); // Show the modal with the winner
         setEnabled(true);
         setFinished(true);
       });
     });
-  }, [angle, getWinnerIndex, wheelPaths]);
+  }, [angle, getWinnerIndex, wheelPaths, numberOfSegments]);
+
 
   const resetWheel = useCallback(() => {
     setFinished(false);
@@ -224,7 +234,8 @@ const SpinningWheel = ({ route }:any) => {
         </Svg>
       </Animated.View>
     );
-  }, [angle]);
+  }, [angle, angleBySegment]);
+
 
   const renderSvgWheel = useCallback(() => {
     return (
@@ -254,26 +265,26 @@ const SpinningWheel = ({ route }:any) => {
             <G y={width / 2} x={width / 2}>
               {wheelPaths.map((arc, i) => {
                 const [x, y] = arc.centroid;
-                
                 return (
                   <G key={`arc-${i}`}>
                     <Path d={arc.path as any} fill={arc.color} />
                     <G
                       rotation={(i * oneTurn) / numberOfSegments}
                       origin={`${x}, ${y}`}
-                      
+
                     >
+
                       <Text
-                        x={x}  // Adjust x position to move text left
-                        y={y}  // Adjust y position for better alignment
-                        
+                        x={x - 2}  // Adjust x position to move text left
+                        y={y + 5}  // Adjust y position for better alignment
+
                         fill="white"
                         textAnchor="middle"
                         fontSize={fontSize}
-                        transform={`rotate(110 ${x},${y})`} // Rotate text 90 degrees
-                        
+                        transform={`rotate(${(angleOffset + 30)} ${x},${y})`} // Rotate text correctly
+
                       >
-                        {arc.title}
+                        {arc.title.length > 15 ? arc.title.substring(0, 7) + '...' : arc.title}
                       </Text>
                     </G>
                   </G>
@@ -285,8 +296,8 @@ const SpinningWheel = ({ route }:any) => {
       </View>
     );
   }, [angle, renderKnob, wheelPaths]);
-  
-  
+
+
 
   if (loading) {
     return (
@@ -312,9 +323,18 @@ const SpinningWheel = ({ route }:any) => {
         style={styles.spinButton}
         onPress={spinWheel}
         disabled={!enabled}
+
       >
         <RNText style={styles.spinButtonText}>Spin the Wheel</RNText>
       </TouchableOpacity>
+      <SpinCard
+        visible={showCard}
+        winner={winner}
+        onClose={() => setShowCard(false)} // Hide modal on close
+        lat={selected.lat || "90"}
+        lon={selected.lon || "90"}
+      />
+
     </View>
   );
 };

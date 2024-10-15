@@ -70,7 +70,7 @@ export const fetchAttractions = async (latitude: any, longitude: any) => {
           });
         }
       }
-      if (attractionDataArray.length >= 10) {
+      if (attractionDataArray.length >= 7) {
         break;
       }
     }
