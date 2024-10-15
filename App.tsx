@@ -17,6 +17,8 @@ import QuizScreen from './screens/QuizScreen';
 import LeaderboardScreen from './screens/LeaderboardScreen';
 import SettingsScreen from './screens/SettingsScreen';
 import SOSScreen from './screens/SosScreen';
+import PostScreen from './screens/PostScreen';
+
 
 const Stack = createNativeStackNavigator();
 
@@ -71,7 +73,8 @@ function App() {
           screenOptions={{
           headerShown: false
           }}>
-           <Stack.Screen name="SOS" component={SOSScreen} />  
+             
+          <Stack.Screen name="SOS" component={SOSScreen} />  
           <Stack.Screen name="settings" component={SettingsScreen} />
           <Stack.Screen name="leaderboard" component={LeaderboardScreen} />
           <Stack.Screen name="Home" component={HomeScreen} />

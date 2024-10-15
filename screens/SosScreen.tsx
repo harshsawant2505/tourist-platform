@@ -6,7 +6,7 @@ import { Ionicons } from '@expo/vector-icons'; // For icons
 
 const SOSScreen = () => {
   const [location, setLocation] = useState<any>(null);
-  const [contact1, setContact1] = useState('');
+  const [contact1, setContact1] = useState('');  
 
   const getLocation = async () => {
     let { status } = await Location.requestForegroundPermissionsAsync();

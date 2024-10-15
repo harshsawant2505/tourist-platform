@@ -10,7 +10,7 @@ import { auth } from '../firebase';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import NetInfo from "@react-native-community/netinfo";
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import Sos from '../components/Sos';
+
 
 
 interface UserSchema {
