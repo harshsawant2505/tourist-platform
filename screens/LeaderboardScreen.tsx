@@ -74,11 +74,12 @@ const LeaderboardScreen = () => {
         {/* Background View for opacity, separated from content */}
         <View style={{
           height: 722,
-          width: 389,
+          width: 379,
+          padding:50,
           backgroundColor: 'black',
           position: 'absolute',
-          top: 30,
-          left: 11,
+          top: 25,
+          left: 7,
           borderRadius: 20,
           opacity: 0.58,
         }} />
@@ -124,7 +125,7 @@ const LeaderboardScreen = () => {
             height: 200,
             width: 350,
             backgroundColor: 'transparent',
-            left: 28,
+            left: 18,
             top: 25,
             borderRadius: 20,
             flexDirection: 'row',
@@ -228,6 +229,7 @@ const LeaderboardScreen = () => {
                 <Text style={{
                   color: 'white',
                   fontSize: 16,
+                
                   textAlign: 'center',
                   fontWeight: '500',
                 }}>{topTenUsers[0].name}</Text>
@@ -297,6 +299,7 @@ const LeaderboardScreen = () => {
             keyExtractor={item => item.rank.toString()}
             style={{
               marginTop: 15,
+              left:-9,
             }}
           />
         </View>
