@@ -172,6 +172,7 @@ const SpinningWheel = ({ route }:any) => {
         useNativeDriver: true,
       }).start(() => {
         const winnerIndex = getWinnerIndex();
+        console.log('winnerIndex:', winnerIndex);
         setWinner(wheelPaths[winnerIndex].title);
         setEnabled(true);
         setFinished(true);
