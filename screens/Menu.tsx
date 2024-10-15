@@ -51,27 +51,23 @@ const Menu = () => {
 
    
       const fetchUserData = async () => {
-    
+        await fetchOffline()
         NetInfo.fetch().then(state => {
           if (!state.isConnected) {
-            console.log("No internet connection");
-            fetchOffline()
+            console.log("No internet connection fetched offline data");
+            
           } else {
             console.log("Internet connection available");
             fetchOnline()
           }
         });
        
-       
-    
       };
     
     
       useEffect(() => {
         console.log("Navigation UseEffect");
         fetchUserData();
-    
-       
     
       }, [navigation]);
 

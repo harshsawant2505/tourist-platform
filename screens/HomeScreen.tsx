@@ -16,6 +16,7 @@ const HomeScreen = ({ navigation }: any) => {
   const [location, setLocation] = useState<any>(null);
   const [closestAttractions, setClosestAttractions] = useState<any>(null);
   const [loading, setLoading] = useState(true); // Loading state
+  const [stateDescription, setStateDescription] = useState<string | null>(null);
 
   // Step 1: Fetch data from AsyncStorage first
   const fetchOfflineData = async () => {
@@ -27,7 +28,13 @@ const HomeScreen = ({ navigation }: any) => {
       const storedState = await AsyncStorage.getItem('state');
       if (storedState) {
         setCurrentState(storedState); // Set state (e.g., location) from AsyncStorage
+        const storedDescription = await AsyncStorage.getItem('StateDescription');
+        if (storedDescription) {
+          setStateDescription(storedDescription); // Set state description from AsyncStorage
+        }
       }
+
+
       const closestAttractionsValue = await AsyncStorage.getItem('closestAttractions');
       if (closestAttractionsValue) {
         setClosestAttractions(JSON.parse(closestAttractionsValue)); // Load attractions from AsyncStorage
@@ -36,6 +43,21 @@ const HomeScreen = ({ navigation }: any) => {
       console.log('Error fetching offline data:', error);
     }
   };
+
+const fetchWikipediaData = async (state: string) => {
+  try {
+    const response = await fetch(
+      `https://en.wikipedia.org/w/api.php?action=query&format=json&prop=extracts&titles=${state}&exintro&explaintext&origin=*`
+    );
+    const data = await response.json();
+    const page:any = Object.values(data.query.pages)[0];
+    const description = page.extract;
+    return description;
+  } catch (error) {
+    console.log('Error fetching Wikipedia data:', error);
+    return null;
+  }
+};
 
   // Step 2: Fetch updated data online if internet is available
   const fetchOnlineData = async () => {
@@ -50,7 +72,16 @@ const HomeScreen = ({ navigation }: any) => {
       if (locationData?.state) {
         setCurrentState(locationData.state);
         await AsyncStorage.setItem('state', locationData.state); // Update AsyncStorage with new state
+
+         // Fetch Wikipedia data
+      const wikiData = await fetchWikipediaData(locationData.state);
+      if (wikiData) {
+        setStateDescription(wikiData); // Assuming you have a state to store Wikipedia data
+        await AsyncStorage.setItem('StateDescription', wikiData); // Store Wikipedia data in AsyncStorage
       }
+    }
+
+     
 
       // Fetch and update closest attractions
       const attractionsData = await fetchAttractions(location?.coords.latitude, location?.coords.longitude);
@@ -195,10 +226,11 @@ const HomeScreen = ({ navigation }: any) => {
             {/* location */}
             <View className='w-full h-[147px] py-5 px-5 rounded-md ' style={{ backgroundColor: 'rgba(255, 255, 255, 0.80)' }}>
               <Text className='text-2xl  text-black  font-medium'>
-                Manali, {currentState ? currentState : 'Loading...'}
+                {currentState ? currentState : 'Loading...'}
               </Text>
-              <Text className='text-md text-gray-600 py-3 font-medium'>
-                A picturesque hill station nestled in the Himalayas, known for its snow-capped. known for its snow capped.
+              <Text className='text-md text-gray-600 py-1 font-medium'>
+                {stateDescription ? stateDescription.split(' ').slice(0, 26).join(' ') + '...' : 'Loading...'}
+               
               </Text>
             </View>
 
