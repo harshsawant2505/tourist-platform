@@ -12,6 +12,8 @@ const { width } = Dimensions.get('screen');
 import * as Location from 'expo-location';
 import { fetchAttractions } from '../utils/fetchSpots';
 
+// my code
+
 const numberOfSegments = 10;
 const wheelSize = width * 0.95;
 const fontSize = 18;
@@ -92,7 +94,7 @@ const SpinningWheel = ({ route }:any) => {
     } else if (location?.coords?.latitude && location?.coords?.longitude) {
       try {
         const attractions = await fetchAttractions(location.coords.latitude, location.coords.longitude);
-        
+
         setClosestAttractions(attractions);  // Set new attractions data
         SaveAttractionsToStorage(attractions);  // Save new data to AsyncStorage
         setLoading(false);
