@@ -13,6 +13,7 @@ import SpinCard from '../components/SpinCard'; // Adjust the path accordingly
 const { width } = Dimensions.get('screen');
 import * as Location from 'expo-location';
 import { fetchAttractions } from '../utils/fetchSpots';
+import { ScrollView } from 'react-native-gesture-handler';
 
 const wheelSize = width * 0.95;
 const fontSize = 18;
@@ -137,7 +138,7 @@ const SpinningWheel = ({ route }: any) => {
 
   const [enabled, setEnabled] = useState(true);
   const [finished, setFinished] = useState(false);
-  const [selected, setSelected] = useState<any>(["90", "90"])
+  const [selected, setSelected] = useState<any>({})
   const [winner, setWinner] = useState(null);
   const angle = useRef(new Animated.Value(0)).current;
   const currentAngle = useRef(0);
@@ -240,7 +241,7 @@ const SpinningWheel = ({ route }: any) => {
 
   const renderSvgWheel = useCallback(() => {
     return (
-      <View style={styles.container}>
+      <View style={[styles.container]}>
         <RNText style={styles.heading}>Activity Picker</RNText>
         {renderKnob()}
         <Animated.View
@@ -310,16 +311,23 @@ const SpinningWheel = ({ route }: any) => {
   }
 
   return (
-    <View style={styles.container}>
-      <View style={styles.wheelContainer}>
+    
+    <ScrollView className='h-screen bg-white'>
+ 
+    <View style={styles.container} >
+      <View style={[styles.wheelContainer]}>
         {renderSvgWheel()}
         {finished && (
-          <RNText style={styles.winnerText} onPress={resetWheel}>
-            The activity is: {winner}
-          </RNText>
+          <SpinCard
+        visible={showCard}
+        winner={winner}
+        onClose={() => setShowCard(false)} // Hide modal on close
+        lat={selected.lat || "90"}
+        lon={selected.lon || "90"}
+          />
         )}
       </View>
-
+      {!showCard&&
       <TouchableOpacity
         style={styles.spinButton}
         onPress={spinWheel}
@@ -328,22 +336,26 @@ const SpinningWheel = ({ route }: any) => {
       >
         <RNText style={styles.spinButtonText}>Spin the Wheel</RNText>
       </TouchableOpacity>
-      <SpinCard
+}
+      {/* <SpinCard
         visible={showCard}
         winner={winner}
         onClose={() => setShowCard(false)} // Hide modal on close
         lat={selected.lat || "90"}
         lon={selected.lon || "90"}
-      />
+      /> */}
 
     </View>
+    </ScrollView>
+ 
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: '#fff',
+    
+    paddingVertical: 30,
+    backgroundColor: 'white',
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -365,7 +377,7 @@ const styles = StyleSheet.create({
   wheelContainer: {
     alignItems: 'center',
     justifyContent: 'center',
-    bottom: 100,
+    // bottom: 100,
   },
   spinButton: {
     backgroundColor: 'purple',
@@ -373,10 +385,9 @@ const styles = StyleSheet.create({
     width: 200,
     alignItems: 'center',
     justifyContent: 'center',
-    position: 'absolute',
-    bottom: 100,
+
     borderRadius: 10,
-    marginTop: 20,
+   
   },
   spinButtonText: {
     color: 'white',
