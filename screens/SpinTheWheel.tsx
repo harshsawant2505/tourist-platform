@@ -66,9 +66,11 @@ const SpinningWheel = ({ route }:any) => {
   };
 
   const SaveAttractionsToStorage = async (data:any) => {
+    console.log("Data: ", data)
     try {
       const jsonValue = JSON.stringify(data);
       await AsyncStorage.setItem('closestAttractions', jsonValue);
+      
     } catch (error) {
       console.error('Error saving closest attractions to storage:', error);
     }
@@ -90,6 +92,7 @@ const SpinningWheel = ({ route }:any) => {
     } else if (location?.coords?.latitude && location?.coords?.longitude) {
       try {
         const attractions = await fetchAttractions(location.coords.latitude, location.coords.longitude);
+        
         setClosestAttractions(attractions);  // Set new attractions data
         SaveAttractionsToStorage(attractions);  // Save new data to AsyncStorage
         setLoading(false);

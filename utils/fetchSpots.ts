@@ -1,15 +1,14 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-let attractionDataArray:any = [];
+// Removed global attractionDataArray
 
 // Function to fetch tourist attractions using Overpass API
-async function fetchTouristAttractions(latitude:any, longitude:any, radius = 10000) {
+async function fetchTouristAttractions(latitude:any, longitude:any, radius = 40000) {
   const query = `
     [out:json];
     (
       node["tourism"="attraction"](around:${radius}, ${latitude}, ${longitude});
-      way["tourism"="attraction"](around:${radius}, ${latitude}, ${longitude});
-      relation["tourism"="attraction"](around:${radius}, ${latitude}, ${longitude});
+     
     );
     out body;
   `;
@@ -39,11 +38,15 @@ async function calculateRoadDistance(startLat:any, startLon:any, endLat:any, end
 
 
 export const fetchAttractions = async (latitude: any, longitude: any) => {
+  let attractionDataArray:any = []; // Initialize inside the function to avoid duplicates
 
   console.log("lat: ", latitude, "lon: ", longitude);
   try {
     const attractions = await fetchTouristAttractions(latitude, longitude);
+
+    console.log("attract: ", attractions)
     const uniqueAttractions = new Set();
+   
 
     for (let attraction of attractions) {
       const attractionId = attraction.id;
@@ -73,6 +76,7 @@ export const fetchAttractions = async (latitude: any, longitude: any) => {
     }
 
     attractionDataArray.sort((a: any, b: any) => a.distance - b.distance);
+    console.log("Sorted: ",attractionDataArray)
 
     try {
       await AsyncStorage.setItem('closestAttractions', JSON.stringify(attractionDataArray));
@@ -90,4 +94,3 @@ export const fetchAttractions = async (latitude: any, longitude: any) => {
 
 
 
-console.log(attractionDataArray)
