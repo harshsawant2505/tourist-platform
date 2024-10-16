@@ -321,13 +321,14 @@ console.log(text)
 
           <View className='w-full h-40 mb-10  flex-row '>
               <ScrollView horizontal className='gap-1 '>
-                 <View className='w-28 h-28 bg-black items-center rounded-md' style={{ backgroundColor: 'rgba(0, 0, 0, 0.43)' }}>
+              <TouchableOpacity onPress={()=>navigation.navigate('mysteryletter')}  className='w-28 h-28 bg-black items-center rounded-md' style={{ backgroundColor: 'rgba(0, 0, 0, 0.43)' }}>
                  <Image
                   source={require('../assets/envelope.png')}
                   className=" w-20 h-20 opacity-100 "
                />
                <Text className='text-white mt-2 text-sm font-medium'>Mystery Map</Text>
-                 </View>
+                 </TouchableOpacity>
+
                  <View className='w-28 h-28 bg-black items-center rounded-md' style={{ backgroundColor: 'rgba(0, 0, 0, 0.43)' }}>
                  <Image
                   source={require('../assets/wheel.png')}

@@ -14,6 +14,7 @@ import SocialScreen from './screens/SocialScreen';
 import { auth } from './firebase';
 import { onAuthStateChanged, User } from 'firebase/auth';
 import { useEffect, useState } from 'react';
+import MysteryLetterScreen from './screens/MysteryLetterScreen';
 
 // Define your stack navigator
 const Stack = createNativeStackNavigator();
@@ -59,11 +60,12 @@ function App() {
       {user ? (
         // Stack Navigator when user is logged in
         <Stack.Navigator
-          initialRouteName="Social" // You can update this route name later
+          initialRouteName="mysteryletter" // You can update this route name later
           screenOptions={{
             headerShown: false,
           }}
         >
+          <Stack.Screen name="mysteryletter" component={MysteryLetterScreen} />
           <Stack.Screen name="Social" component={SocialScreen} />
           <Stack.Screen name="SOS" component={SOSScreen} />
           <Stack.Screen name="Settings" component={SettingsScreen} />
