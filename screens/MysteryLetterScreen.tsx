@@ -11,27 +11,19 @@ const MysteryMap = () => {
         source={require('../assets/mountainBack.jpg')}
         style={{ flex: 1 }}
       >
+         <ScrollView
+          contentContainerStyle={styles.scrollContainer}
+          showsVerticalScrollIndicator={false}
+        >
         {/* Background White Box */}
         <View
           style={{
-            height: 622,
-            width: 374,
-            backgroundColor: 'white',
-            position: 'absolute',
-            justifyContent: 'center',
-            alignItems: 'center',
-            top: 70,
-            left: 8,
-            borderRadius: 20,
-            opacity: 0.2,
+          
           }}
         />
 
         {/* ScrollView for MysteryLetters with gap and padding */}
-        <ScrollView
-          contentContainerStyle={styles.scrollContainer}
-          showsVerticalScrollIndicator={false}
-        >
+        
           <View style={{ paddingBottom: 80 }}>
             <Mysteryletter />
           </View>
@@ -42,12 +34,13 @@ const MysteryMap = () => {
             <Mysteryletter />
           </View>
           {/* Add more Mysteryletter components as needed */}
-        </ScrollView>
+       
 
         {/* Title of the Section */}
         <View style={styles.titleContainer}>
           <Text className="text-white text-[35px] font-[600]">Mystery Letters</Text>
         </View>
+        </ScrollView>
 
         {/* Bottom Navigation Bar */}
         <View style={{ position: 'absolute', bottom: 0, left: 0, right: 0 }}>

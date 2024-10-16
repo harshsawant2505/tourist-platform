@@ -12,26 +12,26 @@ const MysteryMap = () => {
       >
         <View
           style={{
-            height: 722,
-            width: 394,
+            height: 622,
+            width: 378,
             backgroundColor: 'black',
             position: 'absolute',
             justifyContent: 'center',
             alignItems: 'center',
-            top: 100,
+            top: 60,
             left: 8,
-            borderRadius: 20,
-            opacity: 0.58,
+            borderRadius: 20, 
+            opacity: 0.58, 
           }}
         />
         
         
-        <View style={{ position: 'absolute', top: 100, left: 82, zIndex: 2 }}>
+        <View style={{ position: 'absolute', top: 80, left: 52, zIndex: 2 }}>
           <Text className='text-white text-[40px] font-[600]' style={{ opacity: 1 }}>Mystery Maps</Text>
         </View>
 
        
-        <View style={{ position: 'absolute', bottom:0 }}>
+        <View style={{ position: 'absolute', bottom:0,right:0,left:0, }}>
           <Navbar />
         </View>
       </ImageBackground>

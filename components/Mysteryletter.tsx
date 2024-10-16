@@ -94,8 +94,8 @@ const styles = StyleSheet.create({
     left:0,
   },
   image: {
-    height: 282, // Fixed height for both images
-    width: 332,  // Fixed width for both images
+    height: 202, // Fixed height for both images
+    width: 282,  // Fixed width for both images
     borderRadius: 30,
     top:10,
     left:-10,

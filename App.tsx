@@ -15,6 +15,7 @@ import { auth } from './firebase';
 import { onAuthStateChanged, User } from 'firebase/auth';
 import { useEffect, useState } from 'react';
 import MysteryLetterScreen from './screens/MysteryLetterScreen';
+import MysteryMap from './screens/MysteryMap';
 
 // Define your stack navigator
 const Stack = createNativeStackNavigator();
@@ -60,15 +61,16 @@ function App() {
       {user ? (
         // Stack Navigator when user is logged in
         <Stack.Navigator
-          initialRouteName="mysteryletter" // You can update this route name later
+          initialRouteName="mystery map" // You can update this route name later
           screenOptions={{
             headerShown: false,
           }}
-        >
+        > 
+          <Stack.Screen name="mysterymap" component={MysteryMap} />
           <Stack.Screen name="mysteryletter" component={MysteryLetterScreen} />
           <Stack.Screen name="Social" component={SocialScreen} />
           <Stack.Screen name="SOS" component={SOSScreen} />
-          <Stack.Screen name="Settings" component={SettingsScreen} />
+          <Stack.Screen name="settings" component={SettingsScreen} />
           <Stack.Screen name="leaderboard" component={LeaderboardScreen} />
           <Stack.Screen name="Home" component={HomeScreen} />
           <Stack.Screen name="Quiz" component={QuizScreen} />
