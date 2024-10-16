@@ -1,0 +1,971 @@
+{
+    "Odisha": {
+        "activities": [
+            {
+                "title": "Konark Sun Temple",
+                "description": "Visit the magnificent Konark Sun Temple, a UNESCO World Heritage Site."
+            },
+            {
+                "title": "Puri Beach",
+                "description": "Relax on the golden sands of Puri Beach and witness beautiful sunrises."
+            },
+            {
+                "title": "Chilika Lake",
+                "description": "Take a boat ride on Chilika Lake, Asia's largest brackish water lagoon."
+            },
+            {
+                "title": "Bhitarkanika Park",
+                "description": "Explore the mangrove forests and spot saltwater crocodiles in Bhitarkanika."
+            },
+            {
+                "title": "Tribal Village",
+                "description": "Experience the unique culture of Odisha's tribal communities in Rayagada."
+            }
+        ],
+        "coordinates": [
+            {
+                "title": "Konark Sun Temple",
+                "latitude": 19.8876,
+                "longitude": 86.0945
+            },
+            {
+                "title": "Puri Beach",
+                "latitude": 19.8048,
+                "longitude": 85.8516
+            },
+            {
+                "title": "Chilika Lake Boat Ride",
+                "latitude": 19.8450,
+                "longitude": 85.4788
+            },
+            {
+                "title": "Bhitarkanika National Park",
+                "latitude": 20.7200,
+                "longitude": 86.8700
+            },
+            {
+                "title": "Tribal Village Tour",
+                "latitude": 19.1699,
+                "longitude": 83.4163
+            }
+        ]
+    },
+    "Uttarakhand": {
+        "activities": [
+            {
+                "title": "Rishikesh River Rafting",
+                "description": "Experience thrilling white water rafting on the Ganges in Rishikesh."
+            },
+            {
+                "title": "Valley of Flowers Trek",
+                "description": "Trek through the picturesque Valley of Flowers National Park."
+            },
+            {
+                "title": "Nainital Lake Tour",
+                "description": "Enjoy a boat ride on the serene Nainital Lake surrounded by hills."
+            },
+            {
+                "title": "Corbett Tiger Reserve Safari",
+                "description": "Go on a wildlife safari in Jim Corbett National Park to spot tigers and elephants."
+            },
+            {
+                "title": "Kedarnath Temple Pilgrimage",
+                "description": "Embark on a spiritual journey to the ancient Kedarnath Temple."
+            }
+        ],
+        "coordinates": [
+            {
+                "title": "Rishikesh River Rafting",
+                "latitude": 30.1073,
+                "longitude": 78.2932
+            },
+            {
+                "title": "Valley of Flowers Trek",
+                "latitude": 30.7283,
+                "longitude": 79.6050
+            },
+            {
+                "title": "Nainital Lake Tour",
+                "latitude": 29.3919,
+                "longitude": 79.4542
+            },
+            {
+                "title": "Corbett Tiger Reserve Safari",
+                "latitude": 29.5300,
+                "longitude": 78.7747
+            },
+            {
+                "title": "Kedarnath Temple Pilgrimage",
+                "latitude": 30.7346,
+                "longitude": 79.0669
+            }
+        ]
+    },
+    "Madhya Pradesh": {
+        "activities": [
+            {
+                "title": "Khajuraho Temples Tour",
+                "description": "Explore the intricate carvings of the Khajuraho Group of Monuments, a UNESCO site."
+            },
+            {
+                "title": "Bandhavgarh Tiger Safari",
+                "description": "Go on a tiger safari in Bandhavgarh National Park, known for its high tiger density."
+            },
+            {
+                "title": "Sanchi Stupa Visit",
+                "description": "Visit the Great Stupa at Sanchi, one of India's oldest stone structures."
+            },
+            {
+                "title": "Bhedaghat Marble Rocks",
+                "description": "Take a boat ride through the stunning marble rocks of Bhedaghat on the Narmada River."
+            },
+            {
+                "title": "Orchha Heritage Walk",
+                "description": "Discover the medieval charm of Orchha's palaces, temples, and cenotaphs."
+            }
+        ],
+        "coordinates": [
+            {
+                "title": "Khajuraho Temples Tour",
+                "latitude": 24.8318,
+                "longitude": 79.9199
+            },
+            {
+                "title": "Bandhavgarh Tiger Safari",
+                "latitude": 23.7224,
+                "longitude": 81.0224
+            },
+            {
+                "title": "Sanchi Stupa Visit",
+                "latitude": 23.4791,
+                "longitude": 77.7366
+            },
+            {
+                "title": "Bhedaghat Marble Rocks",
+                "latitude": 23.1293,
+                "longitude": 79.7944
+            },
+            {
+                "title": "Orchha Heritage Walk",
+                "latitude": 25.3526,
+                "longitude": 78.6409
+            }
+        ]
+    },
+    "Gujarat": {
+        "activities": [
+            {
+                "title": "Statue of Unity Visit",
+                "description": "See the world's tallest statue, a tribute to Sardar Vallabhbhai Patel."
+            },
+            {
+                "title": "Rann of Kutch Festival",
+                "description": "Enjoy the Rann Utsav, a cultural festival held in the white desert of Kutch."
+            },
+            {
+                "title": "Gir National Park Safari",
+                "description": "Go on a wildlife safari to spot the endangered Asiatic lions in Gir National Park."
+            },
+            {
+                "title": "Somnath Temple Visit",
+                "description": "Visit the famous Somnath Temple, a Jyotirlinga and important pilgrimage site."
+            },
+            {
+                "title": "Sabarmati Ashram",
+                "description": "Explore the Sabarmati Ashram, a museum dedicated to Mahatma Gandhi's life."
+            }
+        ],
+        "coordinates": [
+            {
+                "title": "Statue of Unity Visit",
+                "latitude": 21.8380,
+                "longitude": 73.7191
+            },
+            {
+                "title": "Rann of Kutch Festival",
+                "latitude": 23.7337,
+                "longitude": 69.8597
+            },
+            {
+                "title": "Gir National Park Safari",
+                "latitude": 21.1242,
+                "longitude": 70.8266
+            },
+            {
+                "title": "Somnath Temple Visit",
+                "latitude": 20.8900,
+                "longitude": 70.4017
+            },
+            {
+                "title": "Sabarmati Ashram",
+                "latitude": 23.0406,
+                "longitude": 72.5660
+            }
+        ]
+    },
+    "Haryana": {
+        "activities": [
+            {
+                "title": "Kurukshetra Pilgrimage",
+                "description": "Visit Kurukshetra, the land where the Mahabharata battle took place."
+            },
+            {
+                "title": "Sultanpur Bird Sanctuary",
+                "description": "Explore the bird sanctuary, home to migratory birds during winters."
+            },
+            {
+                "title": "Surajkund Mela",
+                "description": "Attend the Surajkund International Crafts Mela, showcasing crafts and traditions."
+            },
+            {
+                "title": "Morni Hills Trek",
+                "description": "Go trekking in the scenic Morni Hills, a popular hill station in Haryana."
+            },
+            {
+                "title": "Pinjore Gardens",
+                "description": "Relax at the Mughal-style Pinjore Gardens, known for its beautiful landscaping."
+            }
+        ],
+        "coordinates": [
+            {
+                "title": "Kurukshetra Pilgrimage",
+                "latitude": 29.9695,
+                "longitude": 76.8783
+            },
+            {
+                "title": "Sultanpur Bird Sanctuary",
+                "latitude": 28.4602,
+                "longitude": 76.9542
+            },
+            {
+                "title": "Surajkund Mela",
+                "latitude": 28.4930,
+                "longitude": 77.2812
+            },
+            {
+                "title": "Morni Hills Trek",
+                "latitude": 30.6863,
+                "longitude": 77.0282
+            },
+            {
+                "title": "Pinjore Gardens",
+                "latitude": 30.7935,
+                "longitude": 76.9114
+            }
+        ]
+    },
+    "Himachal Pradesh": {
+        "activities": [
+            {
+                "title": "Shimla Toy Train",
+                "description": "Take a scenic toy train ride from Kalka to Shimla, passing through hills and tunnels."
+            },
+            {
+                "title": "Rohtang Pass",
+                "description": "Enjoy the breathtaking views and snow activities at Rohtang Pass."
+            },
+            {
+                "title": "Manali Adventure Sports",
+                "description": "Experience paragliding, skiing, and river rafting in Manali."
+            },
+            {
+                "title": "Dharamshala Monastery",
+                "description": "Visit the Namgyal Monastery, the residence of the Dalai Lama."
+            },
+            {
+                "title": "Great Himalayan National Park",
+                "description": "Explore the biodiversity and scenic beauty of this UNESCO World Heritage site."
+            }
+        ],
+        "coordinates": [
+            {
+                "title": "Shimla Toy Train",
+                "latitude": 31.1048,
+                "longitude": 77.1734
+            },
+            {
+                "title": "Rohtang Pass",
+                "latitude": 32.3647,
+                "longitude": 77.1344
+            },
+            {
+                "title": "Manali Adventure Sports",
+                "latitude": 32.2396,
+                "longitude": 77.1887
+            },
+            {
+                "title": "Dharamshala Monastery",
+                "latitude": 32.2190,
+                "longitude": 76.3200
+            },
+            {
+                "title": "Great Himalayan National Park",
+                "latitude": 31.8082,
+                "longitude": 77.4987
+            }
+        ]
+    },
+    "Jharkhand": {
+        "activities": [
+            {
+                "title": "Betla National Park Safari",
+                "description": "Go on a wildlife safari in Betla National Park, known for its rich biodiversity."
+            },
+            {
+                "title": "Ranchi Hill View",
+                "description": "Enjoy the panoramic views of Ranchi from Ranchi Hill, a popular viewpoint."
+            },
+            {
+                "title": "Hundru Falls",
+                "description": "Visit Hundru Falls, one of the most famous waterfalls in Jharkhand."
+            },
+            {
+                "title": "Netarhat Sunrise",
+                "description": "Watch a breathtaking sunrise at the hill station of Netarhat."
+            },
+            {
+                "title": "Dassam Falls",
+                "description": "Explore the scenic beauty of Dassam Falls, a popular picnic spot."
+            }
+        ],
+        "coordinates": [
+            {
+                "title": "Betla National Park Safari",
+                "latitude": 23.9055,
+                "longitude": 84.1574
+            },
+            {
+                "title": "Ranchi Hill View",
+                "latitude": 23.3431,
+                "longitude": 85.3096
+            },
+            {
+                "title": "Hundru Falls",
+                "latitude": 23.1810,
+                "longitude": 85.5105
+            },
+            {
+                "title": "Netarhat Sunrise",
+                "latitude": 23.5004,
+                "longitude": 84.2711
+            },
+            {
+                "title": "Dassam Falls",
+                "latitude": 23.2667,
+                "longitude": 85.5225
+            }
+        ]
+    },
+    "Karnataka": {
+        "activities": [
+            {
+                "title": "Mysore Palace",
+                "description": "Admire the grand architecture of Mysore Palace, a major historical attraction."
+            },
+            {
+                "title": "Hampi Ruins Exploration",
+                "description": "Explore the ancient ruins of Hampi, a UNESCO World Heritage Site."
+            },
+            {
+                "title": "Coorg Coffee Plantation Tour",
+                "description": "Visit Coorg's coffee plantations and enjoy the lush scenery of the Western Ghats."
+            },
+            {
+                "title": "Jog Falls",
+                "description": "Witness the spectacular Jog Falls, one of the highest waterfalls in India."
+            },
+            {
+                "title": "Nandi Hills",
+                "description": "Enjoy the panoramic sunrise views from Nandi Hills, a popular weekend getaway."
+            }
+        ],
+        "coordinates": [
+            {
+                "title": "Mysore Palace",
+                "latitude": 12.3052,
+                "longitude": 76.6552
+            },
+            {
+                "title": "Hampi Ruins Exploration",
+                "latitude": 15.3350,
+                "longitude": 76.4600
+            },
+            {
+                "title": "Coorg Coffee Plantation Tour",
+                "latitude": 12.4141,
+                "longitude": 75.7382
+            },
+            {
+                "title": "Jog Falls",
+                "latitude": 14.2302,
+                "longitude": 74.8180
+            },
+            {
+                "title": "Nandi Hills",
+                "latitude": 13.3702,
+                "longitude": 77.6835
+            }
+        ]
+    },
+    "Tamil Nadu": {
+        "activities": [
+            {
+                "title": "Meenakshi Temple Visit",
+                "description": "Visit the Meenakshi Temple, known for its stunning Dravidian architecture."
+            },
+            {
+                "title": "Ooty Mountain Train Ride",
+                "description": "Take a ride on the Nilgiri Mountain Railway, a UNESCO World Heritage Site."
+            },
+            {
+                "title": "Kodaikanal Lake Boating",
+                "description": "Enjoy a serene boat ride in the Kodaikanal Lake, surrounded by lush hills."
+            },
+            {
+                "title": "Mahabalipuram Shore Temples",
+                "description": "Explore the Shore Temples at Mahabalipuram, a UNESCO World Heritage Site."
+            },
+            {
+                "title": "Rameswaram Temple",
+                "description": "Visit the Rameswaram Temple, one of the holiest sites in Hinduism."
+            }
+        ],
+        "coordinates": [
+            {
+                "title": "Meenakshi Temple Visit",
+                "latitude": 9.9195,
+                "longitude": 78.1196
+            },
+            {
+                "title": "Ooty Mountain Train Ride",
+                "latitude": 11.4064,
+                "longitude": 76.6932
+            },
+            {
+                "title": "Kodaikanal Lake Boating",
+                "latitude": 10.2381,
+                "longitude": 77.4892
+            },
+            {
+                "title": "Mahabalipuram Shore Temples",
+                "latitude": 12.6208,
+                "longitude": 80.1920
+            },
+            {
+                "title": "Rameswaram Temple",
+                "latitude": 9.2881,
+                "longitude": 79.3129
+            }
+        ]
+    },
+    "West Bengal": {
+        "activities": [
+            {
+                "title": "Darjeeling Toy Train",
+                "description": "Take a ride on the famous Darjeeling Himalayan Railway through scenic mountain views."
+            },
+            {
+                "title": "Sundarbans Mangrove Forest",
+                "description": "Explore the Sundarbans, home to the Royal Bengal Tiger and extensive mangrove forests."
+            },
+            {
+                "title": "Victoria Memorial",
+                "description": "Visit the iconic Victoria Memorial in Kolkata, a symbol of British colonial architecture."
+            },
+            {
+                "title": "Tiger Hill Sunrise",
+                "description": "Watch the sunrise over the Kanchenjunga peaks from Tiger Hill in Darjeeling."
+            },
+            {
+                "title": "Howrah Bridge",
+                "description": "Walk or drive across the historic Howrah Bridge, one of the busiest bridges in India."
+            }
+        ],
+        "coordinates": [
+            {
+                "title": "Darjeeling Toy Train",
+                "latitude": 27.0410,
+                "longitude": 88.2636
+            },
+            {
+                "title": "Sundarbans Mangrove Forest",
+                "latitude": 21.9497,
+                "longitude": 89.1833
+            },
+            {
+                "title": "Victoria Memorial",
+                "latitude": 22.5448,
+                "longitude": 88.3426
+            },
+            {
+                "title": "Tiger Hill Sunrise",
+                "latitude": 26.9949,
+                "longitude": 88.2591
+            },
+            {
+                "title": "Howrah Bridge",
+                "latitude": 22.5856,
+                "longitude": 88.3468
+            }
+        ]
+    },
+    "Maharashtra": {
+        "activities": [
+            {
+                "title": "Ajanta and Ellora Caves",
+                "description": "Visit the Ajanta and Ellora Caves, famous for their ancient rock-cut temples and artwork."
+            },
+            {
+                "title": "Gateway of India",
+                "description": "Marvel at the Gateway of India, a monumental structure in Mumbai facing the Arabian Sea."
+            },
+            {
+                "title": "Shirdi Sai Baba Temple",
+                "description": "Pay homage at the Shirdi Sai Baba Temple, one of the most visited pilgrimage sites."
+            },
+            {
+                "title": "Lonavala Hill Station",
+                "description": "Relax at the picturesque Lonavala Hill Station, famous for its monsoon scenery."
+            },
+            {
+                "title": "Elephanta Caves",
+                "description": "Explore the ancient Elephanta Caves, located on Elephanta Island near Mumbai."
+            }
+        ],
+        "coordinates": [
+            {
+                "title": "Ajanta and Ellora Caves",
+                "latitude": 20.5521,
+                "longitude": 75.7033
+            },
+            {
+                "title": "Gateway of India",
+                "latitude": 18.9220,
+                "longitude": 72.8347
+            },
+            {
+                "title": "Shirdi Sai Baba Temple",
+                "latitude": 19.7655,
+                "longitude": 74.4774
+            },
+            {
+                "title": "Lonavala Hill Station",
+                "latitude": 18.7545,
+                "longitude": 73.4072
+            },
+            {
+                "title": "Elephanta Caves",
+                "latitude": 18.9633,
+                "longitude": 72.9311
+            }
+        ]
+    },
+    "Andhra Pradesh": {
+        "activities": [
+            {
+                "title": "Tirupati Temple Visit",
+                "description": "Visit the renowned Tirumala Venkateswara Temple, a major pilgrimage site."
+            },
+            {
+                "title": "Araku Valley Trekking",
+                "description": "Explore the scenic beauty of Araku Valley with its lush greenery and coffee plantations."
+            },
+            {
+                "title": "Borra Caves Exploration",
+                "description": "Discover the stunning limestone caves with stalactites and stalagmites in Borra."
+            },
+            {
+                "title": "Rishikonda Beach",
+                "description": "Relax on the pristine Rishikonda Beach, perfect for water sports and sunbathing."
+            },
+            {
+                "title": "Kailasagiri Hill Park",
+                "description": "Take a cable car ride to the top of Kailasagiri for panoramic views of Visakhapatnam."
+            }
+        ],
+        "coordinates": [
+            {
+                "title": "Tirupati Temple Visit",
+                "latitude": 13.6288,
+                "longitude": 79.4192
+            },
+            {
+                "title": "Araku Valley Trekking",
+                "latitude": 18.3333,
+                "longitude": 82.8667
+            },
+            {
+                "title": "Borra Caves Exploration",
+                "latitude": 18.3155,
+                "longitude": 82.5746
+            },
+            {
+                "title": "Rishikonda Beach",
+                "latitude": 17.7464,
+                "longitude": 83.3409
+            },
+            {
+                "title": "Kailasagiri Hill Park",
+                "latitude": 17.7445,
+                "longitude": 83.3169
+            }
+        ]
+    },
+    "Arunachal Pradesh": {
+        "activities": [
+            {
+                "title": "Tawang Monastery",
+                "description": "Visit the largest monastery in India, located in the serene mountains of Tawang."
+            },
+            {
+                "title": "Sela Pass Trek",
+                "description": "Trek through the Sela Pass, one of the highest motorable roads in the world."
+            },
+            {
+                "title": "Ziro Music Festival",
+                "description": "Attend the vibrant Ziro Music Festival held in the scenic Ziro Valley."
+            },
+            {
+                "title": "Namdapha National Park",
+                "description": "Explore this biodiversity hotspot, home to diverse wildlife species."
+            },
+            {
+                "title": "Dirang Hot Water Springs",
+                "description": "Relax in the natural hot springs of Dirang, surrounded by picturesque landscapes."
+            }
+        ],
+        "coordinates": [
+            {
+                "title": "Tawang Monastery",
+                "latitude": 27.5889,
+                "longitude": 91.8591
+            },
+            {
+                "title": "Sela Pass Trek",
+                "latitude": 27.515,
+                "longitude": 92.0851
+            },
+            {
+                "title": "Ziro Music Festival",
+                "latitude": 27.544,
+                "longitude": 93.828
+            },
+            {
+                "title": "Namdapha National Park",
+                "latitude": 27.518,
+                "longitude": 96.3845
+            },
+            {
+                "title": "Dirang Hot Water Springs",
+                "latitude": 27.3389,
+                "longitude": 92.2409
+            }
+        ]
+    },
+    "Assam": {
+        "activities": [
+            {
+                "title": "Kaziranga National Park Safari",
+                "description": "Go on a safari in Kaziranga National Park, home to the one-horned rhinoceros."
+            },
+            {
+                "title": "Kamakhya Temple Visit",
+                "description": "Visit the famous Kamakhya Temple, one of the oldest temples in Assam."
+            },
+            {
+                "title": "Majuli Island Exploration",
+                "description": "Discover Majuli, the world's largest river island, known for its culture and spirituality."
+            },
+            {
+                "title": "Sivasagar Heritage Walk",
+                "description": "Explore the historical monuments of the Ahom kingdom in Sivasagar."
+            },
+            {
+                "title": "Brahmaputra River Cruise",
+                "description": "Enjoy a scenic cruise along the mighty Brahmaputra River."
+            }
+        ],
+        "coordinates": [
+            {
+                "title": "Kaziranga National Park Safari",
+                "latitude": 26.5775,
+                "longitude": 93.1711
+            },
+            {
+                "title": "Kamakhya Temple Visit",
+                "latitude": 26.1797,
+                "longitude": 91.6604
+            },
+            {
+                "title": "Majuli Island Exploration",
+                "latitude": 26.9386,
+                "longitude": 94.2219
+            },
+            {
+                "title": "Sivasagar Heritage Walk",
+                "latitude": 26.9845,
+                "longitude": 94.6385
+            },
+            {
+                "title": "Brahmaputra River Cruise",
+                "latitude": 26.1445,
+                "longitude": 91.7362
+            }
+        ]
+    },
+    "Bihar": {
+        "activities": [
+            {
+                "title": "Mahabodhi Temple Visit",
+                "description": "Visit the Mahabodhi Temple in Bodh Gaya, where Buddha attained enlightenment."
+            },
+            {
+                "title": "Nalanda University Ruins",
+                "description": "Explore the ancient ruins of Nalanda University, a UNESCO World Heritage Site."
+            },
+            {
+                "title": "Vikramshila Dolphin Sanctuary",
+                "description": "Go on a boat ride at the Vikramshila Dolphin Sanctuary to spot freshwater dolphins."
+            },
+            {
+                "title": "Rajgir Ropeway",
+                "description": "Take a ropeway ride to Vishwa Shanti Stupa and enjoy panoramic views of Rajgir."
+            },
+            {
+                "title": "Patna Sahib Gurudwara",
+                "description": "Visit the birthplace of Guru Gobind Singh at Takht Sri Patna Sahib."
+            }
+        ],
+        "coordinates": [
+            {
+                "title": "Mahabodhi Temple Visit",
+                "latitude": 24.6951,
+                "longitude": 84.9917
+            },
+            {
+                "title": "Nalanda University Ruins",
+                "latitude": 25.1356,
+                "longitude": 85.4436
+            },
+            {
+                "title": "Vikramshila Dolphin Sanctuary",
+                "latitude": 25.4052,
+                "longitude": 87.1368
+            },
+            {
+                "title": "Rajgir Ropeway",
+                "latitude": 25.0302,
+                "longitude": 85.4255
+            },
+            {
+                "title": "Patna Sahib Gurudwara",
+                "latitude": 25.6092,
+                "longitude": 85.1414
+            }
+        ]
+    },
+    "Chhattisgarh": {
+        "activities": [
+            {
+                "title": "Chitrakoot Waterfalls",
+                "description": "Marvel at the beauty of Chitrakoot Waterfalls, known as the Niagara of India."
+            },
+            {
+                "title": "Kanger Valley National Park",
+                "description": "Explore the rich biodiversity of Kanger Valley National Park."
+            },
+            {
+                "title": "Bhoramdeo Temple",
+                "description": "Visit the ancient Bhoramdeo Temple, known for its stunning architectural carvings."
+            },
+            {
+                "title": "Bastar Dussehra Festival",
+                "description": "Experience the unique Bastar Dussehra, a tribal festival celebrated in Jagdalpur."
+            },
+            {
+                "title": "Tirathgarh Waterfalls",
+                "description": "Enjoy the scenic beauty of the multi-tiered Tirathgarh Waterfalls."
+            }
+        ],
+        "coordinates": [
+            {
+                "title": "Chitrakoot Waterfalls",
+                "latitude": 19.882,
+                "longitude": 81.75
+            },
+            {
+                "title": "Kanger Valley National Park",
+                "latitude": 18.8485,
+                "longitude": 81.8884
+            },
+            {
+                "title": "Bhoramdeo Temple",
+                "latitude": 22.2809,
+                "longitude": 81.0155
+            },
+            {
+                "title": "Bastar Dussehra Festival",
+                "latitude": 19.0691,
+                "longitude": 82.028
+            },
+            {
+                "title": "Tirathgarh Waterfalls",
+                "latitude": 18.985,
+                "longitude": 81.9044
+            }
+        ]
+    },
+    "Goa": {
+        "activities": [
+            {
+                "title": "Scuba Diving",
+                "description": "Explore the underwater world of Goa with coral reefs and marine life."
+            },
+            {
+                "title": "Beach Parties",
+                "description": "Enjoy vibrant parties at famous beaches like Baga and Anjuna."
+            },
+            {
+                "title": "Water Sports",
+                "description": "Experience thrilling water sports like jet skiing and parasailing at Calangute Beach."
+            },
+            {
+                "title": "Dudhsagar Waterfall",
+                "description": "Trek through lush green forests to witness the magnificent Dudhsagar Waterfalls."
+            },
+            {
+                "title": "Spice Plantation Tour",
+                "description": "Visit traditional spice plantations and learn about the rich spice heritage of Goa."
+            }
+        ],
+        "coordinates": [
+            {
+                "title": "Scuba Diving",
+                "latitude": 15.2993,
+                "longitude": 74.124
+            },
+            {
+                "title": "Beach Parties",
+                "latitude": 15.5527,
+                "longitude": 73.7515
+            },
+            {
+                "title": "Water Sports",
+                "latitude": 15.5435,
+                "longitude": 73.7553
+            },
+            {
+                "title": "Dudhsagar Waterfalls Trek",
+                "latitude": 15.3145,
+                "longitude": 74.3142
+            },
+            {
+                "title": "Spice Plantation Tour",
+                "latitude": 15.3277,
+                "longitude": 74.2474
+            }
+        ]
+    },
+    "Rajasthan": {
+        "activities": [
+            {
+                "title": "Desert Safari",
+                "description": "Ride camels and enjoy a traditional Rajasthani experience in the Thar Desert."
+            },
+            {
+                "title": "Palace Tours",
+                "description": "Visit majestic palaces like the City Palace in Jaipur and Udaipur."
+            },
+            {
+                "title": "Hot Air Ballooning",
+                "description": "Soar above the beautiful landscapes of Rajasthan in a hot air balloon."
+            },
+            {
+                "title": "Elephant Ride at Amer Fort",
+                "description": "Take a traditional elephant ride to the top of the Amer Fort."
+            },
+            {
+                "title": "Jaisalmer Fort Exploration",
+                "description": "Discover the living fort of Jaisalmer, a UNESCO World Heritage site."
+            }
+        ],
+        "coordinates": [
+            {
+                "title": "Desert Safari",
+                "latitude": 26.9157,
+                "longitude": 70.9083
+            },
+            {
+                "title": "Palace Tours",
+                "latitude": 26.9221,
+                "longitude": 75.8235
+            },
+            {
+                "title": "Hot Air Ballooning",
+                "latitude": 26.9124,
+                "longitude": 75.7873
+            },
+            {
+                "title": "Elephant Ride at Amer Fort",
+                "latitude": 26.9855,
+                "longitude": 75.8513
+            },
+            {
+                "title": "Jaisalmer Fort Exploration",
+                "latitude": 26.9124,
+                "longitude": 70.9129
+            }
+        ]
+    },
+    "Kerala": {
+        "activities": [
+            {
+                "title": "Backwater Houseboat Cruise",
+                "description": "Sail through the tranquil backwaters of Alleppey on a traditional houseboat."
+            },
+            {
+                "title": "Kathakali Dance Show",
+                "description": "Watch a mesmerizing performance of the traditional Kathakali dance."
+            },
+            {
+                "title": "Munnar Tea Plantation Tour",
+                "description": "Visit the lush tea plantations of Munnar and learn about tea processing."
+            },
+            {
+                "title": "Periyar Wildlife Sanctuary Safari",
+                "description": "Go on a wildlife safari and spot elephants, tigers, and more at Periyar Sanctuary."
+            },
+            {
+                "title": "Varkala Cliff Beaches",
+                "description": "Relax at the scenic Varkala beaches, located next to striking cliffs."
+            }
+        ],
+        "coordinates": [
+            {
+                "title": "Backwater Houseboat Cruise",
+                "latitude": 9.4981,
+                "longitude": 76.3388
+            },
+            {
+                "title": "Kathakali Dance Show",
+                "latitude": 10.5276,
+                "longitude": 76.2144
+            },
+            {
+                "title": "Munnar Tea Plantation Tour",
+                "latitude": 10.0889,
+                "longitude": 77.0595
+            },
+            {
+                "title": "Periyar Wildlife Sanctuary Safari",
+                "latitude": 9.4669,
+                "longitude": 77.1579
+            },
+            {
+                "title": "Varkala Cliff Beaches",
+                "latitude": 8.7379,
+                "longitude": 76.7163
+            }
+        ]
+    }
+}

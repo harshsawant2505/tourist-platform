@@ -5,7 +5,6 @@ import Navbar from '../components/Navbar';
 import { fetchDoc } from '../utils/getUser';
 import { useState,useEffect } from 'react';
 import { signOut } from 'firebase/auth';
-import { Auth } from 'firebase/auth';
 import { auth } from '../firebase';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import NetInfo from "@react-native-community/netinfo";
@@ -22,6 +21,7 @@ const Menu = () => {
     const navigation = useNavigation();
 
     const [user, setUser] = useState<UserSchema>({ name: '', email: '' });
+    const attractionDataArray:any = [];
 
     const fetchOnline = async()=>{
         try {
@@ -50,29 +50,26 @@ const Menu = () => {
         }
     
       }
-    
-      const fetch = async () => {
-    
+
+   
+      const fetchUserData = async () => {
+        await fetchOffline()
         NetInfo.fetch().then(state => {
           if (!state.isConnected) {
-            console.log("No internet connection");
-            fetchOffline()
+            console.log("No internet connection fetched offline data");
+            
           } else {
             console.log("Internet connection available");
             fetchOnline()
           }
         });
        
-       
-    
       };
     
     
       useEffect(() => {
         console.log("Navigation UseEffect");
-        fetch();
-    
-       
+        fetchUserData();
     
       }, [navigation]);
 
@@ -81,7 +78,7 @@ const Menu = () => {
     useCallback(() => {
       // Code to run when the screen is focused (e.g., page is loaded by back button)
       console.log('Screen is focused');
-      fetch();
+      fetchUserData();
 
       return () => {
         // Optional: cleanup when the screen is unfocused

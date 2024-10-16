@@ -26,6 +26,10 @@ import { addDoc, collection } from 'firebase/firestore';
           uid: auth.currentUser?.uid,
           name: name,
           email: auth.currentUser?.email,
+          points: 0,
+          quiz: {
+            score: 0
+          },
         });
         console.log("Document written with ID: ", docRef.id);
       } catch (e) {

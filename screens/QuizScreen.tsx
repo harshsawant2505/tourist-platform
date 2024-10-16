@@ -23,6 +23,8 @@ interface QuizQuestion {
     answer: string;
 }
 
+
+
 const QuizScreen: React.FC = ({navigation}:any) => {
     const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
     const [selectedOption, setSelectedOption] = useState<string | null>(null);
@@ -34,8 +36,8 @@ const QuizScreen: React.FC = ({navigation}:any) => {
     const [initializing, setInitializing] = useState(true);
     const [noInternet, setnointernet] = useState(false);
  
-   
-
+    
+  
  
 
     const [currentState, setCurrentState] = useState(quizData[0]);
@@ -76,7 +78,7 @@ const QuizScreen: React.FC = ({navigation}:any) => {
           }
           if(user?.quiz?.answered){
               console.log("User has answered the quiz");
-              setScore(user.quiz.score);
+              setScore(user.quiz?.score);
               setPoints(user?.points);
               setOver(true);
               setInitializing(false);
